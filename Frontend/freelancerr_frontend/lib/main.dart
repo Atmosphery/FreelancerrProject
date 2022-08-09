@@ -17,26 +17,46 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Potato',
-      home: FreelancerApp(),
+      home: HomePage(),
     );
   }
 }
 
-class FreelancerApp extends StatefulWidget {
-  const FreelancerApp({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<FreelancerApp> createState() => _FreelancerAppState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _FreelancerAppState extends State<FreelancerApp> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        //actionsIconTheme: ,
-        title: const Text("Freelancerr!"),
-        actions: [
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: const [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text("Freelancerr Menu"),
+              ),
+              ListTile(
+                title: Text("Vendors and Services"),
+              ),
+              ListTile(
+                title: Text("Category"),
+              ),
+              
+                ListTile(
+                  title: Text("Become a vendor"),
+                ),
+            ],
+          ),
+        ),
+        appBar: AppBar(title: const Text("Freelancerr!"), actions: [
           IconButton(
             onPressed: () {
               // method to show the search bar
@@ -47,9 +67,7 @@ class _FreelancerAppState extends State<FreelancerApp> {
             },
             icon: const Icon(Icons.search),
           )
-        ],
-      ),
-    );
+        ]));
   }
 }
 
