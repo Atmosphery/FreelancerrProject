@@ -33,41 +33,113 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: const [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text("Freelancerr Menu"),
-              ),
-              ListTile(
-                title: Text("Vendors and Services"),
-              ),
-              ListTile(
-                title: Text("Category"),
-              ),
-              
-                ListTile(
-                  title: Text("Become a vendor"),
-                ),
-            ],
-          ),
+      appBar: AppBar(title: const Text("Freelancerr!"), actions: [
+        IconButton(
+          onPressed: () {
+            // method to show the search bar
+            showSearch(
+                context: context,
+                // delegate to customize the search bar
+                delegate: CustomSearchDelegate());
+          },
+          icon: const Icon(Icons.search),
         ),
-        appBar: AppBar(title: const Text("Freelancerr!"), actions: [
-          IconButton(
-            onPressed: () {
-              // method to show the search bar
-              showSearch(
-                  context: context,
-                  // delegate to customize the search bar
-                  delegate: CustomSearchDelegate());
-            },
-            icon: const Icon(Icons.search),
-          )
-        ]));
+        IconButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const LoginScreen();
+            }));
+          },
+          icon: const Icon(Icons.login),
+        ),
+      ]),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 147, 108, 255),
+              ),
+              child: Text("Freelancerr Menu"),
+            ),
+            ListTile(
+                title: TextButton(
+                    child: Text('View Details'),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return VendorAndServiceScreen();
+                      }));
+                    })),
+            const ListTile(
+              title: Text("Category"),
+            ),
+            const ListTile(
+              title: Text("Become a vendor"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+    );
+  }
+}
+
+class VendorAndServiceScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: const CustomAppbar(),
+      body: Center(
+        child: TextButton(
+          child: Text('Pop!'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class CustomAppbar extends StatefulWidget {
+  const CustomAppbar({Key? key}) : super(key: key);
+
+  @override
+  State<CustomAppbar> createState() => _CustomAppbarState();
+}
+
+class _CustomAppbarState extends State<CustomAppbar> {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(title: const Text("Freelancerr!"), actions: [
+        IconButton(
+          onPressed: () {
+            // method to show the search bar
+            showSearch(
+                context: context,
+                // delegate to customize the search bar
+                delegate: CustomSearchDelegate());
+          },
+          icon: const Icon(Icons.search),
+        )
+      ]);
   }
 }
 
