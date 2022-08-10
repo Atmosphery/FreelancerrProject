@@ -3,8 +3,11 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:http/http.dart' as http;
+
+const String _AppTitle = "Freelancerr!";
 
 void main() {
   runApp(const MyApp());
@@ -33,79 +36,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Freelancerr!"), actions: [
-        IconButton(
+      appBar: CustomAppBar(title: _AppTitle),
+      drawer: const CustomDrawerWidget(header: _AppTitle,),
+      body: Center(
+        child: IconButton(
+          icon: const Icon(Icons.ac_unit_outlined), 
           onPressed: () {
-            // method to show the search bar
-            showSearch(
-                context: context,
-                // delegate to customize the search bar
-                delegate: CustomSearchDelegate());
-          },
-          icon: const Icon(Icons.search),
-        ),
-        IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const LoginScreen();
-            }));
-          },
-          icon: const Icon(Icons.login),
-        ),
-      ]),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 147, 108, 255),
-              ),
-              child: Text("Freelancerr Menu"),
-            ),
-            ListTile(
-                title: TextButton(
-                    child: Text('View Details'),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return VendorAndServiceScreen();
-                      }));
-                    })),
-            const ListTile(
-              title: Text("Category"),
-            ),
-            const ListTile(
-              title: Text("Become a vendor"),
-            ),
-          ],
-        ),
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context) {
+                return VendorAndServiceScreen();
+              }));
+          }),
       ),
+        
     );
   }
 }
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-    );
-  }
-}
-
-class VendorAndServiceScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppbar(),
+      appBar: CustomAppBar(title: _AppTitle),
       body: Center(
         child: TextButton(
           child: Text('Pop!'),
@@ -118,28 +72,114 @@ class VendorAndServiceScreen extends StatelessWidget {
   }
 }
 
-class CustomAppbar extends StatefulWidget {
-  const CustomAppbar({Key? key}) : super(key: key);
-
-  @override
-  State<CustomAppbar> createState() => _CustomAppbarState();
-}
-
-class _CustomAppbarState extends State<CustomAppbar> {
+class VendorAndServiceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: const Text("Freelancerr!"), actions: [
-        IconButton(
+    return Scaffold(
+      appBar: CustomAppBar(title: _AppTitle),
+      body: Center(
+        child: TextButton(
+          child: Text('Pop!'),
           onPressed: () {
-            // method to show the search bar
-            showSearch(
-                context: context,
-                // delegate to customize the search bar
-                delegate: CustomSearchDelegate());
+            Navigator.pop(context);
           },
-          icon: const Icon(Icons.search),
-        )
-      ]);
+        ),
+      ),
+    );
+  }
+}
+
+class CustomDrawerWidget extends StatefulWidget {
+  final String header;
+
+  final bool isSubPage;
+  // An example of search icon press.
+  final bool hasSearchFunction;
+
+  const CustomDrawerWidget(
+      {required this.header,
+      this.isSubPage = false,
+      this.hasSearchFunction = false,
+      Key? key})
+      : super(key: key);
+  @override
+  State<CustomDrawerWidget> createState() => _CustomDrawerWidgetState();
+}
+
+class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 147, 108, 255),
+            ),
+            child: Text("Freelancerr Menu"),
+          ),
+          ListTile(
+              title: TextButton(
+                  child: Text('View Details'),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return VendorAndServiceScreen();
+                    }));
+                  })),
+          const ListTile(
+            title: Text("Category"),
+          ),
+          const ListTile(
+            title: Text("Become a vendor"),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
+  // Preffered size required for PreferredSizeWidget extension
+  final Size prefSize;
+  // App bar title depending on the screen
+  final String title;
+  // A bool to check whether its a subpage or not.
+  final bool isSubPage;
+  // An example of search icon press.
+  final bool hasSearchFunction;
+
+  CustomAppBar(
+      {required this.title,
+      this.isSubPage = false,
+      this.hasSearchFunction = false,
+      this.prefSize = const Size.fromHeight(56.0),
+      Key? key})
+      : super(key: key);
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56.0);
+
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(title: Text(widget.title), actions: [
+      IconButton(
+        onPressed: () {
+          // method to show the search bar
+          showSearch(
+              context: context,
+              // delegate to customize the search bar
+              delegate: CustomSearchDelegate());
+        },
+        icon: const Icon(Icons.search),
+      )
+    ]);
   }
 }
 
