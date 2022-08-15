@@ -37,18 +37,28 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: _AppTitle),
-      drawer: const CustomDrawerWidget(header: _AppTitle,),
-      body: Center(
-        child: IconButton(
-          icon: const Icon(Icons.ac_unit_outlined), 
-          onPressed: () {
-            Navigator.push(context,
-              MaterialPageRoute(builder: (context) {
-                return VendorAndServiceScreen();
-              }));
-          }),
+      drawer: const CustomDrawerWidget(
+        header: _AppTitle,
       ),
-        
+      body: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 3,
+            child: ListView(children: [
+              ListTile(
+                leading: Icon(Icons.emoji_people),
+                title: Text("List Item"),
+                subtitle: Text("#1"),
+                trailing: Icon(Icons.menu),
+              ),
+            ]),
+          ),
+          Expanded(
+            flex: 1,
+            child: Text("Ur mum"),
+          )
+        ],
+      ),
     );
   }
 }
@@ -62,7 +72,7 @@ class LoginScreen extends StatelessWidget {
       appBar: CustomAppBar(title: _AppTitle),
       body: Center(
         child: TextButton(
-          child: Text('Pop!'),
+          child: const Text('Login Page'),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -73,6 +83,8 @@ class LoginScreen extends StatelessWidget {
 }
 
 class VendorAndServiceScreen extends StatelessWidget {
+  const VendorAndServiceScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +137,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return VendorAndServiceScreen();
+                      return const VendorAndServiceScreen();
                     }));
                   })),
           const ListTile(
@@ -168,18 +180,32 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: Text(widget.title), actions: [
-      IconButton(
-        onPressed: () {
-          // method to show the search bar
-          showSearch(
-              context: context,
-              // delegate to customize the search bar
-              delegate: CustomSearchDelegate());
-        },
-        icon: const Icon(Icons.search),
-      )
-    ]);
+    return AppBar(
+        backgroundColor: Color.fromARGB(255, 107, 13, 170),
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // method to show the search bar
+              showSearch(
+                  context: context,
+                  // delegate to customize the search bar
+                  delegate: CustomSearchDelegate());
+            },
+            icon: const Icon(Icons.search),
+          ),
+          TextButton(
+              child: const Text('Login',
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255))),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const LoginScreen();
+                }));
+              })
+        ]);
   }
 }
 
