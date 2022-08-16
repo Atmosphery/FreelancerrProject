@@ -37,26 +37,66 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: _AppTitle),
-      drawer: const CustomDrawerWidget(
-        header: _AppTitle,
-      ),
-      body: Row(
+      drawer: const CustomDrawerWidget(header: _AppTitle),
+      body: 
+        Padding(
+          padding:const EdgeInsets.symmetric(vertical: 5.0),
+          child: Row(
         children: <Widget>[
           Expanded(
-            flex: 3,
-            child: ListView(children: [
-              ListTile(
-                leading: Icon(Icons.emoji_people),
-                title: Text("List Item"),
-                subtitle: Text("#1"),
-                trailing: Icon(Icons.menu),
+            flex: 2,
+            child: <CustomListItem>[
+
+            ]
+          ),
+          const Expanded(
+            flex: 1,
+            child: Center(
+              child: Text("Ur mum")
               ),
-            ]),
+          )
+        ],
+      ),
+    ),
+        
+    );
+  }
+}
+
+class CustomListItem extends StatelessWidget {
+
+  final Widget thumbnail;
+  final String title;
+  final String user;
+  final int viewCount;
+
+  const CustomListItem({
+    Key? key,
+    required this.thumbnail,
+    required this.title,
+    required this.user,
+    required this.viewCount,
+    }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            flex: 2,
+            child: thumbnail,
           ),
           Expanded(
-            flex: 1,
-            child: Text("Ur mum"),
-          )
+            flex: 3,
+            child: Text("Mother lol"),
+          ),
+          const Icon(
+            Icons.more_vert,
+            size: 16.0,
+          ),
         ],
       ),
     );
@@ -101,7 +141,7 @@ class VendorAndServiceScreen extends StatelessWidget {
   }
 }
 
-class CustomDrawerWidget extends StatefulWidget {
+class CustomDrawerWidget extends StatelessWidget {
   final String header;
 
   final bool isSubPage;
@@ -109,16 +149,12 @@ class CustomDrawerWidget extends StatefulWidget {
   final bool hasSearchFunction;
 
   const CustomDrawerWidget(
-      {required this.header,
-      this.isSubPage = false,
-      this.hasSearchFunction = false,
-      Key? key})
-      : super(key: key);
-  @override
-  State<CustomDrawerWidget> createState() => _CustomDrawerWidgetState();
-}
+    {required this.header,
+    this.isSubPage = false,
+    this.hasSearchFunction = false,
+    Key? key})
+    : super(key: key);
 
-class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -152,6 +188,8 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
   }
 }
 
+
+
 class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   // Preffered size required for PreferredSizeWidget extension
   final Size prefSize;
@@ -163,12 +201,12 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   final bool hasSearchFunction;
 
   CustomAppBar(
-      {required this.title,
-      this.isSubPage = false,
-      this.hasSearchFunction = false,
-      this.prefSize = const Size.fromHeight(56.0),
-      Key? key})
-      : super(key: key);
+    {required this.title,
+    this.isSubPage = false,
+    this.hasSearchFunction = false,
+    this.prefSize = const Size.fromHeight(56.0),
+    Key? key})
+    : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(56.0);
@@ -181,7 +219,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        backgroundColor: Color.fromARGB(255, 107, 13, 170),
+        backgroundColor: const Color.fromARGB(255, 107, 13, 170),
         title: Text(widget.title),
         actions: [
           IconButton(
