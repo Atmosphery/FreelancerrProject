@@ -38,33 +38,23 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: CustomAppBar(title: _AppTitle),
       drawer: const CustomDrawerWidget(header: _AppTitle),
-      body: 
-        Padding(
-          padding:const EdgeInsets.symmetric(vertical: 5.0),
-          child: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: <CustomListItem>[
-
-            ]
-          ),
-          const Expanded(
-            flex: 1,
-            child: Center(
-              child: Text("Ur mum")
-              ),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Row(
+          children: <Widget>[
+            Expanded(flex: 2, child: <CustomListItem>[]),
+            const Expanded(
+              flex: 1,
+              child: Center(child: Text("Ur mum")),
+            )
+          ],
+        ),
       ),
-    ),
-        
     );
   }
 }
 
 class CustomListItem extends StatelessWidget {
-
   final Widget thumbnail;
   final String title;
   final String user;
@@ -76,7 +66,7 @@ class CustomListItem extends StatelessWidget {
     required this.title,
     required this.user,
     required this.viewCount,
-    }) : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -149,11 +139,11 @@ class CustomDrawerWidget extends StatelessWidget {
   final bool hasSearchFunction;
 
   const CustomDrawerWidget(
-    {required this.header,
-    this.isSubPage = false,
-    this.hasSearchFunction = false,
-    Key? key})
-    : super(key: key);
+      {required this.header,
+      this.isSubPage = false,
+      this.hasSearchFunction = false,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -188,8 +178,6 @@ class CustomDrawerWidget extends StatelessWidget {
   }
 }
 
-
-
 class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   // Preffered size required for PreferredSizeWidget extension
   final Size prefSize;
@@ -201,12 +189,12 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   final bool hasSearchFunction;
 
   CustomAppBar(
-    {required this.title,
-    this.isSubPage = false,
-    this.hasSearchFunction = false,
-    this.prefSize = const Size.fromHeight(56.0),
-    Key? key})
-    : super(key: key);
+      {required this.title,
+      this.isSubPage = false,
+      this.hasSearchFunction = false,
+      this.prefSize = const Size.fromHeight(56.0),
+      Key? key})
+      : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(56.0);
