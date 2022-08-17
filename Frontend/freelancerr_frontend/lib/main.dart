@@ -40,32 +40,47 @@ class _HomePageState extends State<HomePage> {
       drawer: const CustomDrawerWidget(header: _AppTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5.0),
-        child: Row(
-          children: <Widget>[
-            Expanded(flex: 2, child: <CustomListItem>[]),
-            const Expanded(
-              flex: 1,
-              child: Center(child: Text("Ur mum")),
-            )
-          ],
-        ),
+        child: CustomList(items: [
+          CustomListItem(
+            thumbnail: Container(
+              decoration: const BoxDecoration(color: Colors.pink),
+            ),
+            title: "Potato potahtoe",
+          ),
+          CustomListItem(
+            thumbnail: Container(
+              decoration: const BoxDecoration(color: Colors.pink),
+            ),
+            title: "Ur mom",
+          ),
+        ]),
       ),
     );
+  }
+}
+
+class CustomList extends StatelessWidget {
+  List<CustomListItem> items;
+
+  CustomList({
+    Key? key,
+    required this.items,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(padding: const EdgeInsets.all(10.0), children: items);
   }
 }
 
 class CustomListItem extends StatelessWidget {
   final Widget thumbnail;
   final String title;
-  final String user;
-  final int viewCount;
 
   const CustomListItem({
     Key? key,
     required this.thumbnail,
     required this.title,
-    required this.user,
-    required this.viewCount,
   }) : super(key: key);
 
   @override
@@ -81,7 +96,7 @@ class CustomListItem extends StatelessWidget {
           ),
           Expanded(
             flex: 3,
-            child: Text("Mother lol"),
+            child: Text(title),
           ),
           const Icon(
             Icons.more_vert,
