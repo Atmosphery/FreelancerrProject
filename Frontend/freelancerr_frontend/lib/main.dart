@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -42,15 +44,13 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(vertical: 5.0),
         child: CustomList(items: [
           CustomListItem(
-            thumbnail: Container(
-              decoration: const BoxDecoration(color: Colors.pink),
-            ),
-            title: "Potato potahtoe",
+            thumbnail:
+                "https://eadn-wc03-3448642.nxedge.io/cdn/media/catalog/product/cache/ac15be4d11510284e17cdd74847b75a6/e/o/eotech_eotech_thermochromic_mug_red_a.png",
+            title: "Mug",
           ),
           CustomListItem(
-            thumbnail: Container(
-              decoration: const BoxDecoration(color: Colors.pink),
-            ),
+            thumbnail:
+                "https://play-lh.googleusercontent.com/9UDY3O4wSwlBm-kHHfjKf85Yk5GCt0nckL5ZdMR-nYotAfNjODvR4sZ-scPXG3ABVF65",
             title: "Ur mom",
           ),
         ]),
@@ -74,7 +74,7 @@ class CustomList extends StatelessWidget {
 }
 
 class CustomListItem extends StatelessWidget {
-  final Widget thumbnail;
+  final String thumbnail;
   final String title;
 
   const CustomListItem({
@@ -86,25 +86,33 @@ class CustomListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: thumbnail,
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            verticalDirection: VerticalDirection.down,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Flexible(
+                flex: 1,
+                child: Image.network(
+                  thumbnail,
+                  height: 200,
+                  width: 200,
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Text(title),
+              ),
+              const Icon(
+                Icons.more_vert,
+                size: 16.0,
+              ),
+            ],
           ),
-          Expanded(
-            flex: 3,
-            child: Text(title),
-          ),
-          const Icon(
-            Icons.more_vert,
-            size: 16.0,
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }
 
@@ -117,7 +125,7 @@ class LoginScreen extends StatelessWidget {
       appBar: CustomAppBar(title: _AppTitle),
       body: Center(
         child: TextButton(
-          child: const Text('Login Page'),
+          child: const Text('Back'),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -163,12 +171,13 @@ class CustomDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Color(0xFFffffffff),
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 147, 108, 255),
+              color: Color(0xFF70566D),
             ),
             child: Text("Freelancerr Menu"),
           ),
@@ -222,7 +231,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        backgroundColor: const Color.fromARGB(255, 107, 13, 170),
+        backgroundColor: Color(0xFF42273b),
         title: Text(widget.title),
         actions: [
           IconButton(
