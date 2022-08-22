@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+// ignore_for_file: must_be_immutable, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import, constant_identifier_names, use_full_hex_values_for_flutter_colors, sized_box_for_whitespace
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Potato',
       home: HomePage(),
     );
@@ -39,9 +41,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: _AppTitle),
-      drawer: const CustomDrawerWidget(header: _AppTitle),
+      drawer: CustomDrawerWidget(header: _AppTitle),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        padding: EdgeInsets.symmetric(vertical: 5.0),
         child: CustomList(items: [
           CustomListItem(
             thumbnail:
@@ -86,31 +88,35 @@ class CustomListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        padding: EdgeInsets.symmetric(vertical: 5.0),
         child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            verticalDirection: VerticalDirection.down,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Flexible(
-                flex: 1,
-                child: Image.network(
-                  thumbnail,
-                  height: 200,
-                  width: 200,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              verticalDirection: VerticalDirection.down,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Image.network(
+                    thumbnail,
+                    height: 200,
+                    width: 200,
+                  ),
                 ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Text(title),
-              ),
-              const Icon(
-                Icons.more_vert,
-                size: 16.0,
-              ),
-            ],
+                Flexible(
+                  flex: 1,
+                  child: Text(title),
+                ),
+                Icon(
+                  Icons.more_vert,
+                  size: 16.0,
+                ),
+              ],
+            ),
           ),
         ));
   }
@@ -125,7 +131,7 @@ class LoginScreen extends StatelessWidget {
       appBar: CustomAppBar(title: _AppTitle),
       body: Center(
         child: TextButton(
-          child: const Text('Back'),
+          child: Text('Back'),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -175,7 +181,7 @@ class CustomDrawerWidget extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
               color: Color(0xFF70566D),
             ),
@@ -187,13 +193,13 @@ class CustomDrawerWidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return const VendorAndServiceScreen();
+                      return VendorAndServiceScreen();
                     }));
                   })),
-          const ListTile(
+          ListTile(
             title: Text("Category"),
           ),
-          const ListTile(
+          ListTile(
             title: Text("Become a vendor"),
           ),
         ],
@@ -221,7 +227,7 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
       : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0);
+  Size get preferredSize => Size.fromHeight(56.0);
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -242,17 +248,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   // delegate to customize the search bar
                   delegate: CustomSearchDelegate());
             },
-            icon: const Icon(Icons.search),
+            icon: Icon(Icons.search),
           ),
           TextButton(
-              child: const Text('Login',
+              child: Text('Login',
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 255, 255, 255))),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const LoginScreen();
+                  return LoginScreen();
                 }));
               })
         ]);
@@ -277,7 +283,7 @@ class CustomSearchDelegate extends SearchDelegate {
           onPressed: () {
             query = '';
           },
-          icon: const Icon(Icons.clear)),
+          icon: Icon(Icons.clear)),
     ];
     // ignore: todo
     // TODO: implement buildActions
@@ -291,7 +297,7 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           close(context, null);
         },
-        icon: const Icon(Icons.arrow_back));
+        icon: Icon(Icons.arrow_back));
   }
 
   @override
