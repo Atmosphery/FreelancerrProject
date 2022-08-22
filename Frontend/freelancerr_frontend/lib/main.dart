@@ -2,9 +2,23 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+// ignore_for_file: must_be_immutable, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import, constant_identifier_names, use_full_hex_values_for_flutter_colors, sized_box_for_whitespace
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:http/http.dart' as http;
+
+import 'CustomAppBar.dart';
+import 'CustomDrawerWidget.dart';
+import 'CustomList.dart';
+import 'CustomListItem.dart';
+import 'LoginScreen.dart';
+import 'VendorAndServicesScreen.dart';
+
+const String _AppTitle = "Freelancerr!";
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +29,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Potato',
       home: HomePage(),
     );
@@ -33,115 +47,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: const [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text("Freelancerr Menu"),
-              ),
-              ListTile(
-                title: Text("Vendors and Services"),
-              ),
-              ListTile(
-                title: Text("Category"),
-              ),
-              
-                ListTile(
-                  title: Text("Become a vendor"),
-                ),
-            ],
+      appBar: CustomAppBar(title: _AppTitle),
+      drawer: CustomDrawerWidget(header: _AppTitle),
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 5.0),
+        child: CustomList(items: [
+          CustomListItem(
+            thumbnail:
+                "https://eadn-wc03-3448642.nxedge.io/cdn/media/catalog/product/cache/ac15be4d11510284e17cdd74847b75a6/e/o/eotech_eotech_thermochromic_mug_red_a.png",
+            title: "Mug",
           ),
-        ),
-        appBar: AppBar(title: const Text("Freelancerr!"), actions: [
-          IconButton(
-            onPressed: () {
-              // method to show the search bar
-              showSearch(
-                  context: context,
-                  // delegate to customize the search bar
-                  delegate: CustomSearchDelegate());
-            },
-            icon: const Icon(Icons.search),
-          )
-        ]));
-  }
-}
-
-class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchTerms = [
-    "Apple",
-    "Banana",
-    "Mango",
-    "Pear",
-    "Watermelons",
-    "Blueberries",
-    "Pineapples",
-    "Strawberries"
-  ];
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-          onPressed: () {
-            query = '';
-          },
-          icon: const Icon(Icons.clear)),
-    ];
-    // ignore: todo
-    // TODO: implement buildActions
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    // ignore: todo
-    // TODO: implement buildLeading
-    return IconButton(
-        onPressed: () {
-          close(context, null);
-        },
-        icon: const Icon(Icons.arrow_back));
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    List<String> matches = [];
-    for (String item in searchTerms) {
-      if (item.toLowerCase().contains(query.toLowerCase())) {
-        matches.add(item);
-      }
-    }
-    return ListView.builder(
-      itemCount: matches.length,
-      itemBuilder: (context, index) {
-        var result = matches[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> matches = [];
-
-    for (var item in matches) {
-      if (item.toLowerCase().contains(query.toLowerCase())) {
-        matches.add(item);
-      }
-    }
-    return ListView.builder(
-      itemCount: matches.length,
-      itemBuilder: (context, index) {
-        var result = matches[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
+          CustomListItem(
+            thumbnail:
+                "https://play-lh.googleusercontent.com/9UDY3O4wSwlBm-kHHfjKf85Yk5GCt0nckL5ZdMR-nYotAfNjODvR4sZ-scPXG3ABVF65",
+            title: "Ur mom",
+          ),
+        ]),
+      ),
     );
   }
 }
