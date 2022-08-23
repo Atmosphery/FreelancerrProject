@@ -1,17 +1,24 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 public class Appointment
 {
+   
+
     public int Id { get; set; }
     public Status Status { get; set; }
 
-    public User? Vendor {get; set;}
-    public User? Customer {get; set;}
-    
-    public DateOnly AppointmentDate { get; set; }
+  
+    public int? VendorId {get; set;}
+  
+    public int? CustomerId {get; set;}
+  
+    public int JobId { get; set; }
 
-    public TimeOnly StartTime { get; set; }
-    public TimeOnly EndTime { get; set; }
+    
+    public DateTime AppointmentDate { get; set; }
+
+    
 
 }
 
@@ -20,6 +27,6 @@ public enum Status
     Pending,
     Accepted,
     Declined,
-    Closed
-
+    Complete,
+    Incomplete
 }

@@ -1,0 +1,10 @@
+-Create Network
+docker network create testnet
+
+-Create Sql Container
+docker run --name AppointmentDb -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=abc123!!@" --net testnet -p 1500:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+
+-Create Eureka Container
+docker run --name eureka -d --net netSEN300 -p 8761:8761 steeltoeoss/eureka-server
+
+
