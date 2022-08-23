@@ -4,8 +4,8 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-      #defaultZone: http://eureka:8761/eureka
+      #defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka:8761/eureka
 
 spring:
   application:
@@ -13,8 +13,14 @@ spring:
   cloud:
     gateway:
       routes:
+      #User Service
+      - id: userService
+        uri: lb://USERSERVICE
+        predicates:
+        - Path=/user/**
+      #Appointment Service
       - id: appointmentService
         uri: lb://APPOINTMENTSERVICE
         predicates:
         - Path=/appointment/**
-        
+      

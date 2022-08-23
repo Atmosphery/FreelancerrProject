@@ -1,17 +1,5 @@
 version: "3.8"
 services:
-  userserviceDB:
-    image: mongo
-    container_name: userserviceDB
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./data:/data/
-    environment:
-      - MONGO_INITDB_DATABASE=users
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=root
-  
   eureka:
     image: steeltoeoss/eureka-server
     container_name: eureka
@@ -31,6 +19,33 @@ services:
       - "9000:8080"
     depends_on:
       - "userserviceDB"
+
+  userserviceDB:
+    image: mongo
+    container_name: userserviceDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/
+    environment:
+      - MONGO_INITDB_DATABASE=users
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+  
+  # appointmentservice:
+  #   image: appointmentservice
+  #   build: ./AppiontmentServiceApi
+  #   container_name: appointmentservice
+  #   deploy:
+  #     replicas: 3
+  #     update_config:
+  #       parallelism: 3
+  #       delay: 10s
+  #   ports:
+  #     - "9001:8080"
+  #   depends_on:
+  #     - "userserviceDB"
+
 
 
   apigateway:
