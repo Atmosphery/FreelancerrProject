@@ -27,5 +27,6 @@ public enum Status
     Pending,
     Accepted,
     Declined,
-    Closed
+    Complete,
+    Incomplete
 }

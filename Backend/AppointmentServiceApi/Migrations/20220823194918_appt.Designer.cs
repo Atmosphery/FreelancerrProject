@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppointmentServiceApi.Migrations
 {
     [DbContext(typeof(AppointmentDb))]
-    [Migration("20220823171356_Initial")]
-    partial class Initial
+    [Migration("20220823194918_appt")]
+    partial class appt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

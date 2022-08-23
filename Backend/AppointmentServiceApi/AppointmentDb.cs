@@ -12,6 +12,8 @@ public class AppointmentDb : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
      {
 
+        //modelBuilder.Entity<Appointment>().Property(appt => appt.AppointmentDate).HasPrecision(10,2);
+
         /*modelBuilder.Entity<Appointment>()
             .HasOne(appt => appt.Vendor)
             .WithMany(ven => ven.Appointments);*/
