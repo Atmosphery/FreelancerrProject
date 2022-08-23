@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.userservice.models.User;
@@ -30,11 +31,10 @@ public class ServiceController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
-    @PostMapping("/CreateUser")
-    public String createUser() {
-        User test = new User("name", "301", "email@Email.com", "123", List.of("bruh"));
-        userService.createUser(test);
-        return test.toString();
+    @PostMapping("/createuser")
+    public User createUser(@RequestBody User user) {
+        userService.createUser(user);
+        return user;
     }
     @GetMapping("/user/{id}")
     public String getUser(
