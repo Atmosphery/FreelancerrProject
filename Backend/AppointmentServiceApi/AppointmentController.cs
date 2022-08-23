@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
-[Route("basket")]
+[Route("appointments")]
 public class BasketsController : Controller 
 {
-    private readonly BasketDb _db;
+    private readonly AppointmentDB _db;
 
-    public BasketsController(ILogger<BasketsController> logger, BasketDb db)
+    public BasketsController(ILogger<BasketsController> logger, AppointmentDB db)
     {
         _db = db;
     }
-
-    [HttpGet]
-    public async Task<ActionResult<List<Appointment>>>
 }
