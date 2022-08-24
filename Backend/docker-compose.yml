@@ -32,21 +32,26 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
   
-  # appointmentservice:
-  #   image: appointmentservice
-  #   build: ./AppiontmentServiceApi
-  #   container_name: appointmentservice
-  #   deploy:
-  #     replicas: 3
-  #     update_config:
-  #       parallelism: 3
-  #       delay: 10s
-  #   ports:
-  #     - "9001:8080"
-  #   depends_on:
-  #     - "userserviceDB"
-
-
+  appointmentservice:
+    image: appointmentservice
+    build: ./AppiontmentServiceApi
+    container_name: appointmentservice
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
+    ports:
+      - "9001:8080"
+    depends_on:
+      - "userserviceDB"
+      
+  appointmentdb:
+    image: sql-image
+    build: ./AppointmentServiceApi/appointmentdb
+    container_name: sql-appointment
+    ports:
+      - "1500:1433"
 
   apigateway:
     image: apigateway:1    
@@ -72,3 +77,8 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
       - ME_CONFIG_MONGODB_ADMINPASSWORD=root
       - ME_CONFIG_MONGODB_SERVER=userserviceDB
+
+# networks:
+#   default:
+#     name: netSEN3
+#     external: true
