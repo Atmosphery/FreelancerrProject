@@ -8,15 +8,9 @@ public class AppointmentsController : Controller
 {
     private readonly AppointmentDb _db;
 
-    public AppointmentsController(ILogger<AppointmentsController> logger, AppointmentDb db)
+    public AppointmentsController(AppointmentDb db)
     {
         _db = db;
-    }
-
-    [HttpGet("test")]
-    public IResult test (Appointment appt)
-    {
-        return Results.Ok(appt);
     }
 
     //Crud Functions
