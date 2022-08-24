@@ -29,6 +29,5 @@ using (var serviceScope = app.Services.CreateScope())
 
 app.MapControllers();
 
-app.MapGet("/", () => "Hello World!");
 
 app.Run();

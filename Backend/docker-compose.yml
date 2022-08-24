@@ -34,7 +34,7 @@ services:
   
   appointmentservice:
     image: appointmentservice
-    build: ./AppiontmentServiceApi
+    build: ./AppointmentServiceApi
     container_name: appointmentservice
     deploy:
       replicas: 3
@@ -48,7 +48,7 @@ services:
       
   appointmentdb:
     image: sql-image
-    build: ./AppointmentServiceApi/appointmentdb
+    build: .\AppointmentServiceApi\appointmentdb
     container_name: sql-appointment
     ports:
       - "1500:1433"
