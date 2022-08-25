@@ -37,9 +37,7 @@ public class ServiceController {
         return user;
     }
     @GetMapping("/user/{id}")
-    public String getUser(
-        @PathVariable("id") String id
-        )
+    public String getUser(@PathVariable("id") String id)
     {
         return userService.getUser(id) != null? userService.getUser(id).toString() : USER_NOT_FOUND;
     }
