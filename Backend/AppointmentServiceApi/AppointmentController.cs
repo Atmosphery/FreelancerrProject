@@ -13,6 +13,14 @@ public class AppointmentsController : Controller
         _db = db;
     }
 
+
+    [HttpGet("all/{id}")]
+    public async Task<ActionResult<List<Appointment>>> GetAllUserAppointments(int id)
+    {
+        var list = _db.Appointments.Where(a => a.CustomerId == id || a.VendorId == id);
+        return Ok(list);
+    }
+
     //Crud Functions
 
     [HttpGet("all")]
@@ -51,7 +59,7 @@ public class AppointmentsController : Controller
             return CreatedAtAction(nameof(GetAppointment), new { id = appt.Id }, appt);
         }
         return BadRequest(); 
-    }
+        }
 
     //Update Appointment
     [HttpPut]
