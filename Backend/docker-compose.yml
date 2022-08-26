@@ -1,5 +1,6 @@
 version: "3.8"
 services:
+
   eureka:
     image: steeltoeoss/eureka-server
     container_name: eureka
@@ -18,7 +19,8 @@ services:
     ports:
       - "9000:8080"
     depends_on:
-      - "userserviceDB"
+      - userserviceDB
+      - eureka
 
   userserviceDB:
     image: mongo
@@ -32,6 +34,13 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
   
+  appointmentdb:
+    image: sql-image
+    build: .\AppointmentServiceApi\appointmentdb
+    container_name: sql-appointment
+    ports:
+      - "1500:1433"
+
   appointmentservice:
     image: appointmentservice
     build: ./AppointmentServiceApi
@@ -44,15 +53,10 @@ services:
     ports:
       - "9001:8080"
     depends_on:
-      - "userserviceDB"
+      - appointmentdb
+      - eureka
 
-  appointmentdb:
-    image: sql-image
-    build: .\AppointmentServiceApi\appointmentdb
-    container_name: sql-appointment
-    ports:
-      - "1500:1433"
-
+  
   apigateway:
     image: apigateway:1    
     container_name: apigateway
@@ -77,6 +81,8 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
       - ME_CONFIG_MONGODB_ADMINPASSWORD=root
       - ME_CONFIG_MONGODB_SERVER=userserviceDB
+    depends_on:
+      - userserviceDB
 
 # networks:
 #   default:

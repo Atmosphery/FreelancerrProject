@@ -3,6 +3,7 @@ using Steeltoe.Common.Discovery;
 using Steeltoe.Discovery.Eureka;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDiscoveryClient(builder.Configuration);
@@ -23,8 +24,22 @@ app.UseCors(builder => builder
 
 using (var serviceScope = app.Services.CreateScope())
 {
-    var context = serviceScope.ServiceProvider.GetRequiredService<AppointmentDb>();
-    context.Database.Migrate();
+    try
+    {
+        var context = serviceScope.ServiceProvider.GetRequiredService<AppointmentDb>();
+        
+        if(!context.Database.CanConnect())
+        {
+            context.Database.Migrate();
+        }
+        
+    }
+    catch (Exception)
+    {
+        
+        throw;
+    }
+    
 }
 
 app.MapControllers();
