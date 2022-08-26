@@ -10,10 +10,7 @@ def deploy_docker():
     os.chdir(script_location)
     subprocess.call([r""+script_location+"\BuildAndDeployAll.bat"])
     os.chdir(self_dir)
-
-def insert_database_data():
-    Database.insert_data_mongo()
-    Database.insert_data_sql()
+    
 
 def full_deploy():
     deploy_docker()
