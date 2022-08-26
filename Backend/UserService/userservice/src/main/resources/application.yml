@@ -1,0 +1,30 @@
+spring:
+    cloud:
+        inetutils:
+            timeout-seconds: 5
+            ignored-interfaces:
+                - eth0*
+                - eth2*
+                - lo
+    data:
+        mongodb:
+            authentication-database: admin
+            username: root
+            password: root
+            database: users
+            host: userserviceDB
+            port: 27017
+    application:
+        name: userservice
+eureka:
+    client:
+        shouldFetchRegistry: true
+        shouldRegisterWithEureka: true
+        validateRegistry: false
+        serviceUrl: 
+            defaultZone: http://eureka:8761/eureka
+    instance:
+        instance-id: ${spring.application.instance_id:${random.value}}:${spring.application.name}
+logging:
+  level:
+    org.springframework.cloud.commons.util.InetUtils: trace

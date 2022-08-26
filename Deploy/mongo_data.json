@@ -1,6 +1,7 @@
 {
     "dummy_data": [
     {
+        "_id": 1,
         "name": "John Doe",
         "phonenumber": "1234567890",
         "email": "email@email.com",
@@ -15,6 +16,7 @@
         ]
     },
     {
+        "_id": 2,
         "name": "Wilfredo",
         "phonenumber": "55555",
         "email": "email@email2.com",
@@ -23,6 +25,34 @@
         "bio": "I sell speedruns",
         "isVender": true,
         "appointments": [
+        ]
+    },
+    {
+        "_id": 3,
+        "name": "John Doe",
+        "phonenumber": "123-233-4829",
+        "email": "real@email.com",
+        "address": "999 fake street",
+        "password": "goodpassword",
+        "bio": "I make videos! but i am not real",
+        "isVender": true,
+        "appointments": [
+            "3",
+            "8"
+        ]
+    },
+    {
+        "_id": 4,
+        "name": "GoodBuys83",
+        "phonenumber": "444-444-4444",
+        "email": "notbestbuy@goodbuy.com",
+        "address": "123 south street",
+        "password": "bestbuy",
+        "bio": "I sell stuff",
+        "isVender": true,
+        "appointments": [
+            "9",
+            "10"
         ]
     }
     ]

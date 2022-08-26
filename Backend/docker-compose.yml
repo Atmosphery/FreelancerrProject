@@ -83,8 +83,3 @@ services:
       - ME_CONFIG_MONGODB_SERVER=userserviceDB
     depends_on:
       - userserviceDB
-
-# networks:
-#   default:
-#     name: netSEN3
-#     external: true
