@@ -1,0 +1,29 @@
+{
+    "dummy_data": [
+    {
+        "name": "John Doe",
+        "phonenumber": "1234567890",
+        "email": "email@email.com",
+        "address": "123 Fake Street",
+        "password": "password",
+        "bio": "I am a dummy user",
+        "isVender": false,
+        "appointments": [
+            "1",
+            "2",
+            "84"
+        ]
+    },
+    {
+        "name": "Wilfredo",
+        "phonenumber": "55555",
+        "email": "email@email2.com",
+        "address": "123 Street",
+        "password": "123",
+        "bio": "I sell speedruns",
+        "isVender": true,
+        "appointments": [
+        ]
+    }
+    ]
+}
