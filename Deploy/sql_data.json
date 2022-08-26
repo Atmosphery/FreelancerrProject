@@ -1,0 +1,12 @@
+{
+    "Appointment_data": [
+        {
+            "id": 1,
+            "status": "Pending",
+            "vendorid": "1",
+            "customerid": "2",
+            "jobid": "1",
+            "appointmentdate": "2018-01-01"
+        }
+    ]
+}
