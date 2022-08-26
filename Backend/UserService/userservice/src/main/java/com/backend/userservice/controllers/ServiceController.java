@@ -39,10 +39,17 @@ public class ServiceController {
         return user;
     }
     @GetMapping("/user/{id}")
-    public User getUser(@PathVariable("id") String id)
+    public User getUserById(@PathVariable("id") String id)
     {
         return userService.getUser(id) != null? userService.getUser(id) : USER_NOT_FOUND;
     }
+
+    // @GetMapping("/user/{name}")
+    // public User getUserByName(@PathVariable("name") String name)
+    // {
+    //     return userService.getUserByName(name) != null? userService.getUser(id) : USER_NOT_FOUND;
+    // }
+
     @GetMapping("/user/{id}/appointments")
     public List<String> userAppointments(
         @PathVariable("id") String id

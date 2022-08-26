@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, unused_local_variable, use_build_context_synchronously
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'CustomAppBar.dart';
+import 'User.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
 
@@ -47,28 +50,25 @@ class LoginScreenState extends State<LoginScreen> {
           ),
           TextButton(
             onPressed: () async {
-              var url = Uri.parse('http://localhost:8888/userservice/user/1');
+              var url = Uri.parse('http://localhost:8888/userservice/users');
               var response = await http.get(url);
-              print('Response status: ${response.body}');
-              var bodyparse = response.body.split(' ');
-              print(bodyparse);
-              var nameparse =
-                  bodyparse.where((bodyparse) => bodyparse.contains('name'));
-              print(nameparse);
-              var userparse = nameparse.toString().split('=');
-              print(userparse);
-              var name =
-                  userparse.where((userparse) => userparse.contains('nate'));
+              List userList = jsonDecode(response.body);
+              var user = userList.where(
+                  (user) => user['name'] == usernameController.text.toString());
 
-              print('name1 ' + name.toString());
-              print('name2 ' + usernameController.value.text.toString());
-
-              if (usernameController.value.text.toString() == name.toString()) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
+              for (int i = 0; i < userList.length; i++) {
+                print(userList[i]);
               }
+
+              print(user);
+              User userModel = User.fromJson(user as Map<String, dynamic>);
+              print("usermodel " + userModel.toString());
+              // if (userModel.password == passwordController.text.toString()) {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => HomePage()),
+              //   );
+              // }
             },
             child: Text("Log in"),
           ),

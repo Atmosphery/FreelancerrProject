@@ -57,6 +57,4 @@ public class UserService {
         //this should call the other service to find out the appointments details
         return Collections.emptyList();
     }
-
-
 }
