@@ -28,10 +28,9 @@ using (var serviceScope = app.Services.CreateScope())
     {
         var context = serviceScope.ServiceProvider.GetRequiredService<AppointmentDb>();
         
-        if(!context.Database.CanConnect())
-        {
-            context.Database.Migrate();
-        }
+        
+        context.Database.Migrate();
+        
         
     }
     catch (Exception)
