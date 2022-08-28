@@ -1,0 +1,49 @@
+//  Post Users
+
+{
+    "id": 1,
+    "name": "wilfredo",
+    "password":"wilfredo",
+    "phonenumber":"301",
+    "email":"wilfredo@email.com",
+    "bio":"Professional automator",
+    "address": "read address",
+    "isVendor":true,
+    "appointments":[]
+}
+
+{
+    "id": 2,
+    "name": "nate",
+    "password":"nate",
+    "phonenumber":"301",
+    "email":"nate@email.com",
+    "bio":"Professional cool guy",
+    "address": "read address",
+    "isVendor":true,
+    "appointments":[]
+}
+
+{
+    "id": 3,
+    "name": "alec",
+    "password":"alec",
+    "phonenumber":"301",
+    "email":"alec@email.com",
+    "bio":"user on the site",
+    "address": "read address",
+    "isVendor":false,
+    "appointments":[]
+}
+
+{
+    "id": 4,
+    "name": "sarah",
+    "password":"sarah",
+    "phonenumber":"301",
+    "email":"sarah@email.com",
+    "bio":"girl on site",
+    "address": "read address",
+    "isVendor":false,
+    "appointments":[]
+}

@@ -1,0 +1,25 @@
+AUTH INFORMATION
+    ADMIN auth is required for any request using HTTP.DELETE (which should only be 1)
+    Login:
+        username: aaaa
+        password: pass
+
+ROUTES INFORMATION
+
+GET (/test)
+    Responds with "Hello World"
+GET (/users)
+    Responds with a list of ALL users
+POST (/createuser)
+    Requires a body that can be converted into a user
+    Responds with the new User
+GET (/user/{id})
+    Responds with user object with {id}
+GET (/user/{id}/appointments)
+    Responds with list<string> of appointments (should be ids)
+PUT (/user/{id})
+    Requires a valid user object in the body of the request
+    Responds with STRING "user updated" or "User not found"
+
+DELETE (/user/{id}) #REQUIRES ADMIN ROLE
+    Responds with deleted user IF its found otherwise responds with invalid user object

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.userservice.models.User;
 import com.backend.userservice.repo.UserRepository;
 import com.backend.userservice.services.UserService;
+import com.thoughtworks.xstream.mapper.Mapper.Null;
 
 import lombok.AllArgsConstructor;
 
@@ -21,7 +23,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ServiceController {
     private final UserService userService;
-    private static final String USER_NOT_FOUND = "User not found";
+    private static final User USER_NOT_FOUND = new User("User not found");
 
     @GetMapping("/test")
     public String test() {
@@ -37,10 +39,17 @@ public class ServiceController {
         return user;
     }
     @GetMapping("/user/{id}")
-    public String getUser(@PathVariable("id") String id)
+    public User getUserById(@PathVariable("id") String id)
     {
-        return userService.getUser(id) != null? userService.getUser(id).toString() : USER_NOT_FOUND;
+        return userService.getUser(id) != null? userService.getUser(id) : USER_NOT_FOUND;
     }
+
+    // @GetMapping("/user/{name}")
+    // public User getUserByName(@PathVariable("name") String name)
+    // {
+    //     return userService.getUserByName(name) != null? userService.getUser(id) : USER_NOT_FOUND;
+    // }
+
     @GetMapping("/user/{id}/appointments")
     public List<String> userAppointments(
         @PathVariable("id") String id
@@ -49,5 +58,13 @@ public class ServiceController {
         return userService.getUser(id) != null? 
                                 userService.getUser(id).getAppointments() : new ArrayList<>();
     }
-    
+    @DeleteMapping("/user/{id}")
+    public User deleteUser(@PathVariable("id") String id) {
+        User deletedUser = userService.getUser(id);
+        return userService.deleteUser(deletedUser) != null ? deletedUser: USER_NOT_FOUND;
+    }
+    @PutMapping("/user/{id}")
+    public String editUser(@PathVariable("id") String id, @RequestBody User user) {
+        return userService.editUser(id, user)? "User updated" : "User not found";
+    }
 }
