@@ -1,4 +1,4 @@
-import DeployAll
+import Deploy
 
 def menu():
     print("""
@@ -13,11 +13,11 @@ def main():
     while True:
         choice = menu()
         if choice == "1":
-            DeployAll.full_deploy()
+            Deploy.full_deploy()
         elif choice == "2":
-            DeployAll.rebuild_and_deploy()
+            Deploy.rebuild_and_deploy()
         elif choice == "3":
-            DeployAll.delete_all()
+            Deploy.delete_all()
         elif choice == "4":
             break
         else:
@@ -26,4 +26,4 @@ def main():
         break
 
 if __name__ == "__main__":
-    DeployAll.full_deploy()
+    Deploy.full_deploy()

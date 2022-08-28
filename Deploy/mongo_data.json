@@ -11,8 +11,8 @@
         "isVender": false,
         "appointments": [
             "1",
-            "2",
-            "84"
+            "4",
+            "5"
         ]
     },
     {
@@ -25,11 +25,12 @@
         "bio": "I sell speedruns",
         "isVender": true,
         "appointments": [
+            "1"
         ]
     },
     {
         "_id": 3,
-        "name": "John Doe",
+        "name": "Fake name",
         "phonenumber": "123-233-4829",
         "email": "real@email.com",
         "address": "999 fake street",
@@ -37,8 +38,9 @@
         "bio": "I make videos! but i am not real",
         "isVender": true,
         "appointments": [
-            "3",
-            "8"
+            "2",
+            "4",
+            "5"
         ]
     },
     {
@@ -51,8 +53,21 @@
         "bio": "I sell stuff",
         "isVender": true,
         "appointments": [
-            "9",
-            "10"
+            "3"
+        ]
+    },
+    {
+        "_id": 5,
+        "name": "Bobby Brown",
+        "phonenumber": "333-421-2313",
+        "email": "Bobby@Brown.com",
+        "address": "143 Main St",
+        "password": "Bob",
+        "bio": "I need to buy services!",
+        "isVender": false,
+        "appointments": [
+            "3",
+            "2"
         ]
     }
     ]
