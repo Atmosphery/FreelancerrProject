@@ -55,7 +55,7 @@ namespace AppointmentTests
             context.SaveChanges();
             AppointmentsController controller = new AppointmentsController(context);
 
-            var result = await controller.GetAllUserAppointments(1);
+            var result = controller.GetAllUserAppointments(1);
             var actual = (result.Result as OkObjectResult).Value as IEnumerable<Appointment>;
 
             Assert.NotNull(actual);
