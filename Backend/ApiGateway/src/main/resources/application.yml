@@ -17,14 +17,14 @@ spring:
       - id: userService
         uri: lb://USERSERVICE
         predicates:
-        - Path=/user/**
+        - Path=/userservice/**
       #Appointment Service
       - id: appointmentService
         uri: lb://APPOINTMENTSERVICE
         predicates:
-        - Path=/appointment/**
+        - Path=/appointmentservice/**
       #Job Service
       - id: jobService
         uri: lb://JOBSERVICE
         predicates:
-        - Path=/job/**
+        - Path=/jobservice/**

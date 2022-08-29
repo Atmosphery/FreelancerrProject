@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 [ApiController]
-[Route("job")]
+[Route("jobservice")]
 public class JobController : Controller
 {
     private readonly JobDb _db;
