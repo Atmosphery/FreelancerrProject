@@ -10,6 +10,14 @@ GET (/test)
     Responds with "Hello World"
 GET (/users)
     Responds with a list of ALL users
+GET (/finduser/{name})
+    **Only Responds with 1 Object**
+    ***Case Insensitive***
+    Responds with User Object or with Invalid User Object if not found
+GET (/findallusers/{name})
+    **Only Responds with a List of Users**
+    ***Case Insensitive***
+    Responds with List<User> Object or with empty list if nothing is found
 POST (/createuser)
     Requires a body that can be converted into a user
     Responds with the new User

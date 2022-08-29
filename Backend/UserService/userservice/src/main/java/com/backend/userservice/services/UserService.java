@@ -18,6 +18,7 @@ public class UserService {
     private final UserRepository repo;
     
     public void createUser(User user){
+        user.setName(user.getName());
         repo.insert(user);
     }
     public List<User> getAllUsers(){
@@ -57,6 +58,13 @@ public class UserService {
         //this should call the other service to find out the appointments details
         return Collections.emptyList();
     }
+    //get user by name
+    public User getUserByName(String name){
 
+        return repo.findByNameIgnoreCase(name);
+    }
+    public List<User> getAllUsersByName(String name){
+        return repo.findAllByNameIgnoreCase(name);
+    }
 
 }
