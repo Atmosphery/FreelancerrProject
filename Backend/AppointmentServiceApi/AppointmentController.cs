@@ -30,8 +30,6 @@ public class AppointmentsController : Controller
         return Ok(list);
     }
 
-
-
     //Get One Appointment
     [HttpGet("{id}")]
     public async Task<ActionResult<List<Appointment>>> GetAppointment(int id)
