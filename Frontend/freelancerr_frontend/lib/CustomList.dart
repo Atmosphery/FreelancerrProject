@@ -1,12 +1,13 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:freelancerr_frontend/InfoTile.dart';
 
 import 'CustomListItem.dart';
 import 'main.dart';
 
 class CustomList extends StatelessWidget {
-  List<CustomListItem> items;
+  List<InfoTile> items;
 
   CustomList({
     Key? key,

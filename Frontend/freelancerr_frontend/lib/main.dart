@@ -58,16 +58,7 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.symmetric(vertical: 5.0),
         child: CustomList(
           items: [
-            // CustomListItem(
-            //   thumbnail:
-            //       "https://eadn-wc03-3448642.nxedge.io/cdn/media/catalog/product/cache/ac15be4d11510284e17cdd74847b75a6/e/o/eotech_eotech_thermochromic_mug_red_a.png",
-            //   title: "Mug",
-            // ),
-            // CustomListItem(
-            //   thumbnail:
-            //       "https://play-lh.googleusercontent.com/9UDY3O4wSwlBm-kHHfjKf85Yk5GCt0nckL5ZdMR-nYotAfNjODvR4sZ-scPXG3ABVF65",
-            //   title: "Ur mom",
-            // ),
+            
           ],
         ),
       ),
