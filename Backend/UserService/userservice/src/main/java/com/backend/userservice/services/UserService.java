@@ -18,6 +18,7 @@ public class UserService {
     private final UserRepository repo;
     
     public void createUser(User user){
+        user.setName(user.getName());
         repo.insert(user);
     }
     public List<User> getAllUsers(){
@@ -29,15 +30,6 @@ public class UserService {
         }
         return repo.findById(id).get();
     }
-
-    // public List<User> getByName(String name) {
-    //     return repo.findByName(name);
-    // }
-
-    public List<User> getUsersByName(String name) {
-        return repo.getUsersByName(name);
-    }
-
     public boolean editUser(String id, User user){
         repo.findById(id).ifPresent(u -> {
             u.setName(user.getName());
@@ -66,8 +58,13 @@ public class UserService {
         //this should call the other service to find out the appointments details
         return Collections.emptyList();
     }
+    //get user by name
+    public User getUserByName(String name){
 
-    public int getUserCount(){
-        return getAllUsers().size();
+        return repo.findByNameIgnoreCase(name);
     }
+    public List<User> getAllUsersByName(String name){
+        return repo.findAllByNameIgnoreCase(name);
+    }
+
 }
