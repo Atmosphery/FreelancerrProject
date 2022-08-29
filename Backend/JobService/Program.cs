@@ -6,7 +6,7 @@ using Steeltoe.Discovery;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.Services.AddDiscoveryClient(builder.Configuration);
+builder.Services.AddDiscoveryClient(builder.Configuration);
 builder.Services.AddControllers();//This line finds the controller we built
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore

@@ -36,7 +36,7 @@ services:
   
   appointmentdb:
     image: sql-image
-    build: .\AppointmentServiceApi\appointmentdb
+    build: .\db
     container_name: sql-appointment
     ports:
       - "1500:1433"
@@ -72,10 +72,10 @@ services:
 
   jobdb:
     image: sql-image
-    build: .\JobService\jobdb
     container_name: sql-appointment
     ports:
-      - "1500:1433"
+      - "1501:1433"
+    
 
   
   apigateway:

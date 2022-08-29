@@ -23,4 +23,8 @@ spring:
         uri: lb://APPOINTMENTSERVICE
         predicates:
         - Path=/appointment/**
-      
+      #Job Service
+      - id: jobService
+        uri: lb://JOBSERVICE
+        predicates:
+        - Path=/job/**

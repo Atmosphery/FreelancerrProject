@@ -15,7 +15,7 @@ public class AppointmentsController : Controller
 
 
     [HttpGet("all/{id}")]
-    public async ActionResult<List<Appointment>> GetAllUserAppointments(int id)
+    public async Task<ActionResult<List<Appointment>>> GetAllUserAppointments(int id)
     {
         var list = await _db.Appointments.Where(a => a.CustomerId == id || a.VendorId == id).ToListAsync();
         return Ok(list);

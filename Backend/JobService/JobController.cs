@@ -41,7 +41,7 @@ public class JobController : Controller
     [HttpGet]
     public async Task<ActionResult<Job>> GetJobByObject(Job SearchItem)
     {
-        Job Job = await _db.Jobs.FindAsync(SearchItem);
+        Job Job = await _db.Jobs.FindAsync(SearchItem.Id);
 
         if (Job == null)
         {
@@ -109,11 +109,20 @@ public class JobController : Controller
        //Job dbJob =  _db.Jobs.Find(job.Id);
         if (job == null)
         {
-            return new NotFoundObjectResult(job);
+            return new BadRequestObjectResult(job);
         }
+        try
+        {
+            _db.Jobs.Remove(job);
+            await _db.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            
+            return new NotFoundResult();;
+        }
+
         
-        _db.Jobs.Remove(job);
-        await _db.SaveChangesAsync();
 
         return Ok(job);
     }
