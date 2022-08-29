@@ -3,17 +3,11 @@ package com.backend.userservice.repo;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import com.backend.userservice.models.User;
 
-@Repository
 public interface UserRepository extends MongoRepository<User, String> {
-
-    // @Query("{'name' : ?0")
-    // List<User> findByName(String name);
-
-    List<User> getUsersByName(String name);
+    User findByNameIgnoreCase(String name);
+    List<User> findAllByNameIgnoreCase(String name);
 }
 
