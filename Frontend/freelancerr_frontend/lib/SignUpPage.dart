@@ -104,13 +104,13 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           TextButton(
             onPressed: () async {
-              var url =
-                  Uri.parse('http://localhost:8888/userservice/usercount');
+              var url = Uri.parse('http://localhost:8888/userservice/users');
               http.Response resCount = await http.get(url);
+              var userCountList = jsonDecode(resCount.body);
 
               print("count body: " + resCount.body);
 
-              int idCount = int.parse(resCount.body);
+              int idCount = userCountList.length;
               print("count: " + idCount.toString());
 
               var uriCreate =
@@ -118,10 +118,12 @@ class _SignUpPageState extends State<SignUpPage> {
 
               String nameCheck = nameCon.text;
               var uriName = Uri.parse(
-                  'http://localhost:8888/userservice/username/$nameCheck');
+                  'http://localhost:8888/userservice/finduser/$nameCheck');
               http.Response resName = await http.get(uriName);
 
-              if (resName.body.isEmpty) {
+              User usrNameCheck = User.fromJson(jsonDecode(resName.body));
+
+              if (usrNameCheck.name != nameCheck) {
                 User newUser = new User(
                     id: idCount.toString(),
                     name: nameCon.text,

@@ -53,7 +53,7 @@ class LoginScreenState extends State<LoginScreen> {
             onPressed: () async {
               String nameCheck = usernameController.text;
               var url = Uri.parse(
-                  'http://localhost:8888/userservice/username/$nameCheck');
+                  'http://localhost:8888/userservice/finduser/$nameCheck');
               http.Response response = await http.get(url);
 
               print(response.body.toString());
