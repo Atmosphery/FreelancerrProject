@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'CustomAppBar.dart';
+import 'SignUpPage.dart';
 import 'User.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
@@ -50,27 +51,46 @@ class LoginScreenState extends State<LoginScreen> {
           ),
           TextButton(
             onPressed: () async {
-              var url = Uri.parse('http://localhost:8888/userservice/users');
-              var response = await http.get(url);
-              List userList = jsonDecode(response.body);
-              var user = userList.where(
-                  (user) => user['name'] == usernameController.text.toString());
+              String nameCheck = usernameController.text;
+              var url = Uri.parse(
+                  'http://localhost:8888/userservice/username/$nameCheck');
+              http.Response response = await http.get(url);
 
-              for (int i = 0; i < userList.length; i++) {
-                print(userList[i]);
+              print(response.body.toString());
+              User user = User.fromJson(jsonDecode(response.body));
+
+              var url2 = Uri.parse('http://localhost:8888/userservice/users');
+              http.Response response2 = await http.get(url2);
+              
+              var venderJson = jsonDecode(response2.body);
+              List<User> venders = [];
+              for (int i = 0; i < venderJson.length; i++) {
+                User userToAdd = User.fromJson(venderJson[i]);
+                if (userToAdd.id != user.id) {
+                  venders.add(userToAdd);
+                }
+                print("User to add: " + userToAdd.name.toString());
               }
 
-              print(user);
-              User userModel = User.fromJson(user as Map<String, dynamic>);
-              print("usermodel " + userModel.toString());
-              // if (userModel.password == passwordController.text.toString()) {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => HomePage()),
-              //   );
-              // }
+              if (user.password == passwordController.text.toString()) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          HomePage(user: user, venders: venders)),
+                );
+              }
             },
             child: Text("Log in"),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SignUpPage()),
+              );
+            },
+            child: Text("Sign up"),
           ),
         ],
       ),

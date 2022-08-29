@@ -16,6 +16,7 @@ import 'CustomDrawerWidget.dart';
 import 'CustomList.dart';
 import 'CustomListItem.dart';
 import 'LoginScreen.dart';
+import 'User.dart';
 import 'VendorAndServicesScreen.dart';
 
 const String _AppTitle = "Freelancerr!";
@@ -37,7 +38,10 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key, required this.user, required this.venders})
+      : super(key: key);
+  final User user;
+  List<User> venders;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -48,21 +52,24 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: _AppTitle),
-      drawer: CustomDrawerWidget(header: _AppTitle),
+      drawer: CustomDrawerWidget(
+          header: _AppTitle, user: widget.user, venders: widget.venders),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 5.0),
-        child: CustomList(items: [
-          CustomListItem(
-            thumbnail:
-                "https://eadn-wc03-3448642.nxedge.io/cdn/media/catalog/product/cache/ac15be4d11510284e17cdd74847b75a6/e/o/eotech_eotech_thermochromic_mug_red_a.png",
-            title: "Mug",
-          ),
-          CustomListItem(
-            thumbnail:
-                "https://play-lh.googleusercontent.com/9UDY3O4wSwlBm-kHHfjKf85Yk5GCt0nckL5ZdMR-nYotAfNjODvR4sZ-scPXG3ABVF65",
-            title: "Ur mom",
-          ),
-        ]),
+        child: CustomList(
+          items: [
+            // CustomListItem(
+            //   thumbnail:
+            //       "https://eadn-wc03-3448642.nxedge.io/cdn/media/catalog/product/cache/ac15be4d11510284e17cdd74847b75a6/e/o/eotech_eotech_thermochromic_mug_red_a.png",
+            //   title: "Mug",
+            // ),
+            // CustomListItem(
+            //   thumbnail:
+            //       "https://play-lh.googleusercontent.com/9UDY3O4wSwlBm-kHHfjKf85Yk5GCt0nckL5ZdMR-nYotAfNjODvR4sZ-scPXG3ABVF65",
+            //   title: "Ur mom",
+            // ),
+          ],
+        ),
       ),
     );
   }
