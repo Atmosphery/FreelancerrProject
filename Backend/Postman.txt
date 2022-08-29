@@ -47,3 +47,13 @@
     "isVendor":false,
     "appointments":[]
 }
+
+
+//  Post Appointments
+{
+    "status":"Pending",
+    "vendorId":1,
+    "customerId":2,
+    "jobId":1,
+    "DateTime":"12/12/2022"
+}
