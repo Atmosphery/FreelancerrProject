@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 [ApiController]
-[Route("jobservice")]
+[Route("jobs")]
 public class JobController : Controller
 {
     private readonly JobDb _db;
@@ -25,6 +25,13 @@ public class JobController : Controller
         Job job = new Job();
 
         return Ok(job);
+    }
+
+    [HttpGet("all")]
+    public async Task<ActionResult<List<Job>>> GetUserJobs()
+    {
+        List<Job> jobs = await _db.Jobs.ToListAsync();
+        return Ok(jobs);
     }
 
     [HttpGet("all/{userid}")]

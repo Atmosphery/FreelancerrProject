@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
-[Route("appointmentservice")]
+[Route("appointments")]
 public class AppointmentsController : Controller 
 {
     private readonly AppointmentDb _db;
@@ -11,6 +11,19 @@ public class AppointmentsController : Controller
     public AppointmentsController(AppointmentDb db)
     {
         _db = db;
+    }
+
+    [HttpGet("all")]
+    public async Task<ActionResult<List<Appointment>>> GetUserJobs()
+    {
+        List<Appointment> jobs = await _db.Appointments.ToListAsync();
+        return Ok(jobs);
+    }
+
+    [HttpGet("test")]
+    public ActionResult<Appointment> test()
+    {
+        return new Appointment();
     }
 
 

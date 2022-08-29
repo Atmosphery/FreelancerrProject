@@ -22,9 +22,9 @@ spring:
       - id: appointmentService
         uri: lb://APPOINTMENTSERVICE
         predicates:
-        - Path=/appointmentservice/**
+        - Path=/appointments/**
       #Job Service
       - id: jobService
         uri: lb://JOBSERVICE
         predicates:
-        - Path=/jobservice/**
+        - Path=/jobs/**

@@ -140,6 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 print("${responsePost.statusCode}");
                 print("${responsePost.body}");
               }
+              Navigator.pop(context);
             },
             child: Text("Sign up"),
           ),
