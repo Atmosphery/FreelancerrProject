@@ -1,4 +1,5 @@
 import Deploy
+import os
 
 def menu():
     print("""
@@ -24,6 +25,14 @@ def main():
             print("Invalid choice")
             continue
         break
-
+def verifyPath():
+    currentpath = os.getcwd()
+    if currentpath.find("Deploy") != -1:
+        return True
+    else:
+        return False
 if __name__ == "__main__":
-    Deploy.full_deploy()
+    if not verifyPath():
+        print("run from deploy directory")
+    else:
+        main()

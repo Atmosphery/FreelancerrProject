@@ -3,6 +3,8 @@ from pymongo import MongoClient
 import json
 import pyodbc
 import json
+import time
+import os
 
 #Change this to TRUE if you want to use localhost databases
 #Change this to FALSE if you want to use Docker Databases
@@ -87,6 +89,13 @@ def setup_databases_with_data():
     sql_connection, sql_cursor, mongo_connection, mongo_collection = setup_database_connections()
     insert_data_sql()
     close_database_connections()
-
+def wait_for_database():
+    while True:
+        try:
+            sql_connection, sql_cursor, mongo_connection, mongo_collection = setup_database_connections()
+            break
+        except Exception as e:
+            time.sleep(5)
 if __name__ == "__main__":
+    insert_data_sql()
     print("This is a module please run Main.py")
