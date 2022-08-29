@@ -64,35 +64,18 @@ class _HomePageState extends State<HomePage> {
     http.Response response = await http.get(url);
     Iterable l = json.decode(response.body);
     List<Job> jobList = List<Job>.from(l.map((model) => Job.fromJson(model)));
-    
+
     return jobList;
   }
 
-  getJobs() {
-    FutureBuilder<List<Job>>(
-      future: fetchData(),
-      builder: (BuildContext context, AsyncSnapshot<List<Job>> snapshot) {
-        if (!snapshot.hasData) {
-          // while data is loading:
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
-          // data loaded:
-          //final androidDeviceInfo = snapshot.data;
-          var jobList = snapshot.data;
-          for (var item in jobList!) {
-            jobTiles.add(
-              InfoTile(
-                title: item.title,
-                image: Image.network(
-                    "https://static.vecteezy.com/system/resources/previews/000/344/822/original/printed-circuit-board-vector-illustration.jpg"),
-              ),
-            );
-          }
-          
-        }
-      },
+  getJobs()async {
+    List<Job> jobList = await fetchData();
+    return ListView.builder(
+      itemBuilder: (context, index) => InfoTile(
+        title: jobList[index].title,
+        image: Image.network("https://static.vecteezy.com/system/resources/previews/000/344/822/original/printed-circuit-board-vector-illustration.jpg")
+      ),
+      itemCount: jobTiles.length,
     );
   }
 
@@ -104,7 +87,7 @@ class _HomePageState extends State<HomePage> {
           header: _AppTitle, user: widget.user, venders: widget.venders),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 5.0),
-        child: CustomList(items: jobTiles),
+        child: CustomList(items: getJobs()),
       ),
     );
   }
