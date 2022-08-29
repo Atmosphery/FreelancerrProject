@@ -1,41 +1,59 @@
-class User {
-  int? id;
+// ignore_for_file: unused_import, depend_on_referenced_packages, unnecessary_this, prefer_collection_literals, unnecessary_new
 
+class User {
+  String? id;
   String? name;
   String? phonenumber;
   String? email;
   String? address;
   String? password;
   String? bio;
-  bool? isVendor = false;
-  //store the appointment Id's in a list
   List<String>? appointments;
+  bool? vender;
+  String? currentMessage;
 
   User(
-      {this.address,
-      this.id,
+      {this.id,
       this.name,
       this.phonenumber,
       this.email,
+      this.address,
       this.password,
-      this.appointments,
       this.bio,
-      this.isVendor});
+      this.appointments,
+      this.vender,
+      this.currentMessage});
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      name: json['name'] as String,
-      id: json['id'] as int,
-      phonenumber: json['phonenumber'] as String,
-      email: json['email'] as String,
-      password: json['password'] as String,
-      bio: json['bio'] as String,
-      appointments: json['appointments'] as List<String>,
-      isVendor: json['isVendor'] as bool,
-    );
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    phonenumber = json['phonenumber'];
+    email = json['email'];
+    address = json['address'];
+    password = json['password'];
+    bio = json['bio'];
+    if (json['appointments'] != null) {
+      appointments = <String>[];
+      json['appointments'].forEach((v) {
+        appointments!.add('test');
+      });
+    }
+    vender = json['vender'];
   }
 
-  void addAppointment(String app) {
-    appointments!.add(app);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['phonenumber'] = this.phonenumber;
+    data['email'] = this.email;
+    data['address'] = this.address;
+    data['password'] = this.password;
+    data['bio'] = this.bio;
+    if (this.appointments != null) {
+      //data['appointments'] = this.appointments!.map((v) => v.toJson()).toList();
+    }
+    data['vender'] = this.vender;
+    return data;
   }
 }

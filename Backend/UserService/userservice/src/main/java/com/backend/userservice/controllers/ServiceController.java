@@ -33,6 +33,12 @@ public class ServiceController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+
+    @GetMapping("/usercount")
+    public int getUserCount(){
+        return userService.getUserCount();
+    }
+
     @PostMapping("/createuser")
     public User createUser(@RequestBody User user) {
         userService.createUser(user);
@@ -44,10 +50,16 @@ public class ServiceController {
         return userService.getUser(id) != null? userService.getUser(id) : USER_NOT_FOUND;
     }
 
-    // @GetMapping("/user/{name}")
-    // public User getUserByName(@PathVariable("name") String name)
+    @GetMapping("/username/{name}")
+    public User getUserByName(@PathVariable("name") String name)
+    {
+        return userService.getUsersByName(name).get(0);
+    }
+
+    // @GetMapping("/user2/{name}")
+    // public List<User> getUsersByName(@PathVariable("name") String name)
     // {
-    //     return userService.getUserByName(name) != null? userService.getUser(id) : USER_NOT_FOUND;
+    //     return userService.getUsersByName(name);
     // }
 
     @GetMapping("/user/{id}/appointments")

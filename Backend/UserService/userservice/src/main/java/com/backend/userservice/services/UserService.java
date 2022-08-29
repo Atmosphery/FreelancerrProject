@@ -29,6 +29,15 @@ public class UserService {
         }
         return repo.findById(id).get();
     }
+
+    // public List<User> getByName(String name) {
+    //     return repo.findByName(name);
+    // }
+
+    public List<User> getUsersByName(String name) {
+        return repo.getUsersByName(name);
+    }
+
     public boolean editUser(String id, User user){
         repo.findById(id).ifPresent(u -> {
             u.setName(user.getName());
@@ -56,5 +65,9 @@ public class UserService {
         //throw not yet implemented
         //this should call the other service to find out the appointments details
         return Collections.emptyList();
+    }
+
+    public int getUserCount(){
+        return getAllUsers().size();
     }
 }
