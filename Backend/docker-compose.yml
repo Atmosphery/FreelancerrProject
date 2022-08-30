@@ -6,6 +6,14 @@ services:
     container_name: eureka
     ports:
       - "8761:8761"
+  
+  socketserver:
+    image: socketserver
+    build: ./socketserver
+    ports:
+      - "5000:5000"
+    depends_on:
+      - eureka
 
   userservice:
     image: userservice
@@ -88,19 +96,3 @@ services:
       - "8888:8888"
     depends_on:
       - eureka
-
-  #DEBUG USER SERVICE MONGO DATABASE
-  #Opens a portal on port 8081 to access the mongo database
-  #nicer than using mongo compass
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    restart: always
-    ports:
-      - "8081:8081"
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=root
-      - ME_CONFIG_MONGODB_SERVER=userserviceDB
-    depends_on:
-      - userserviceDB
