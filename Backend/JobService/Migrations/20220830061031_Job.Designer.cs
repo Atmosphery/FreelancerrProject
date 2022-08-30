@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobService.Migrations
 {
     [DbContext(typeof(JobDb))]
-    [Migration("20220828034642_Jobs")]
-    partial class Jobs
+    [Migration("20220830061031_Job")]
+    partial class Job
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,9 @@ namespace JobService.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageLink")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")

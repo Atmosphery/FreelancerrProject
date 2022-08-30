@@ -4,7 +4,7 @@
 
 namespace JobService.Migrations
 {
-    public partial class Jobs : Migration
+    public partial class Job : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,8 @@ namespace JobService.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    BasePrice = table.Column<float>(type: "real", nullable: false)
+                    BasePrice = table.Column<float>(type: "real", nullable: false),
+                    ImageLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

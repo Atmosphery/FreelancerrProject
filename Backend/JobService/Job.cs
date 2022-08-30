@@ -7,6 +7,8 @@ public class Job
     public int UserId{ get; set; }
     public float BasePrice { get; set; }
 
+    public string? ImageLink { get; set; }
+
     public Job()
     {
 

@@ -28,6 +28,7 @@ void main() {
   runApp(const MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -52,31 +53,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late List<InfoTile> jobTiles;
-
+  
   @override
   void initState() {
     super.initState();
-  }
-
-  Future<List<Job>> fetchData() async {
-    var url = Uri.parse('http://localhost:8888/jobs/all');
-    http.Response response = await http.get(url);
-    Iterable l = json.decode(response.body);
-    List<Job> jobList = List<Job>.from(l.map((model) => Job.fromJson(model)));
-
-    return jobList;
-  }
-
-  getJobs()async {
-    List<Job> jobList = await fetchData();
-    return ListView.builder(
-      itemBuilder: (context, index) => InfoTile(
-        title: jobList[index].title,
-        image: Image.network("https://static.vecteezy.com/system/resources/previews/000/344/822/original/printed-circuit-board-vector-illustration.jpg")
-      ),
-      itemCount: jobTiles.length,
-    );
+    
   }
 
   @override
@@ -85,10 +66,7 @@ class _HomePageState extends State<HomePage> {
       appBar: CustomAppBar(title: _AppTitle),
       drawer: CustomDrawerWidget(
           header: _AppTitle, user: widget.user, venders: widget.venders),
-      body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 5.0),
-        child: CustomList(items: getJobs()),
-      ),
+      body: CustomList(),
     );
   }
 }
