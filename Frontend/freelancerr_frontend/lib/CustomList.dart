@@ -38,26 +38,28 @@ class _CustomListState extends State<CustomList> {
       for (var i = 0; i < data.length; i++) {
         this.items.add(InfoTile(
             title: data[i]['title'],
-            image: Image.network(data[i]['imageLink'])));
+            image: Image.network(
+              data[i]['imageLink'],
+            )));
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ListView.builder(
-          shrinkWrap: false,
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return InfoTile(
-                title: items[index].title, image: items[index].image);
-          },
-        ),
-      ],
+    ScrollController _controller = new ScrollController();
+
+    return RefreshIndicator(
+      onRefresh: refreshJobs,
+      child: ListView.builder(
+        physics: const AlwaysScrollableScrollPhysics(),
+        controller: _controller,
+        shrinkWrap: true,
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return InfoTile(title: items[index].title, image: items[index].image);
+        },
+      ),
     );
   }
 }

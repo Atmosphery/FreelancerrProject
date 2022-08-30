@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:freelancerr_frontend/LoginScreen.dart';
 
-class InfoTile extends StatelessWidget {
+class InfoTile extends StatefulWidget {
   final String title;
   final Image image;
 
@@ -11,37 +12,45 @@ class InfoTile extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<InfoTile> createState() => _InfoTileState();
+}
+
+class _InfoTileState extends State<InfoTile> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              Expanded(
-                //flex: 2,
-                child: image,
-              ),
-              Flexible(
-                //flex: 1,
-                child: Row(
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(0, 216, 10, 10)),
-                    ),
-                    TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.person),
-                        label: Text("Contact Seller")),
-                  ],
+      child: SizedBox(
+        height: 100,
+        width: 100,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: widget.image,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+                TextButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
+                    icon: Icon(Icons.person),
+                    label: Text("Contact Seller")),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
