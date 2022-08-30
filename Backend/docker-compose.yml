@@ -44,7 +44,7 @@ services:
   
   appointmentdb:
     image: sql-image
-    build: .\AppointmentServiceApi\appointmentdb
+    build: .\db
     container_name: sql-appointment
     ports:
       - "1500:1433"
@@ -63,6 +63,27 @@ services:
     depends_on:
       - appointmentdb
       - eureka
+  
+  jobservice:
+    image: jobservice
+    build: ./JobService
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 30s
+    ports:
+      - 9002:8080
+    depends_on:
+      - jobdb
+      - eureka
+
+  jobdb:
+    image: sql-image
+    container_name: sql-appointment
+    ports:
+      - "1501:1433"
+    
 
   
   apigateway:

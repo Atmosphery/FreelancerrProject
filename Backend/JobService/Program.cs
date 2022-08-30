@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 //builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));//gives connection to db
-builder.Services.AddDbContext<AppointmentDb>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("docker_db1")));//gives up the database handle
+builder.Services.AddDbContext<JobDb>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("docker_db1")));//gives up the database handle
 var app = builder.Build();
 
 app.UseCors(builder => builder
@@ -26,19 +26,19 @@ using (var serviceScope = app.Services.CreateScope())
 {
     try
     {
-        var context = serviceScope.ServiceProvider.GetRequiredService<AppointmentDb>();
-        
-        
+        var context = serviceScope.ServiceProvider.GetRequiredService<JobDb>();
+
+
         context.Database.Migrate();
-        
-        
+
+
     }
     catch (Exception)
     {
-        
+
         throw;
     }
-    
+
 }
 
 app.MapControllers();
