@@ -6,9 +6,6 @@ import 'package:freelancerr_frontend/Job.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'CustomListItem.dart';
-import 'main.dart';
-
 class CustomList extends StatefulWidget {
   CustomList({
     Key? key,
@@ -36,28 +33,38 @@ class _CustomListState extends State<CustomList> {
     this.items = [];
     setState(() {
       for (var i = 0; i < data.length; i++) {
-        this.items.add(InfoTile(
-            title: data[i]['title'],
-            image: Image.network(
-              data[i]['imageLink'],
-            )));
+        this.items.add(
+              InfoTile(
+                title: data[i]['title'],
+                image: Image.network(
+                  data[i]['imageLink'],
+                ),
+                jobId: data[i]['id'],
+                userId: data[i]['userId'],
+              ),
+            );
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    ScrollController _controller = new ScrollController();
+    ScrollController controller = ScrollController();
 
     return RefreshIndicator(
       onRefresh: refreshJobs,
       child: ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
-        controller: _controller,
+        controller: controller,
         shrinkWrap: true,
         itemCount: items.length,
         itemBuilder: (context, index) {
-          return InfoTile(title: items[index].title, image: items[index].image);
+          return InfoTile(
+            title: items[index].title,
+            image: items[index].image,
+            jobId: items[index].jobId,
+            userId: items[index].userId,
+          );
         },
       ),
     );

@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:freelancerr_frontend/LoginScreen.dart';
+import 'Job.dart';
+import 'SellerPage.dart';
 
 class InfoTile extends StatefulWidget {
   final String title;
   final Image image;
+  final int jobId;
+  final int userId;
 
   const InfoTile({
     Key? key,
     required this.title,
     required this.image,
+    required this.jobId,
+    required this.userId,
   }) : super(key: key);
 
   @override
@@ -21,12 +27,11 @@ class _InfoTileState extends State<InfoTile> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        height: 100,
-        width: 100,
+        height: 300,
         child: Column(
           children: [
             Expanded(
-              flex: 1,
+              flex: 3,
               child: widget.image,
             ),
             Row(
@@ -42,7 +47,11 @@ class _InfoTileState extends State<InfoTile> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => VendorPage(
+                                  jobId: widget.jobId,
+                                  userId: widget.userId.toString(),
+                                )),
                       );
                     },
                     icon: Icon(Icons.person),
