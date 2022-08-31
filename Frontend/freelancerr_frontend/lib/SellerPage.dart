@@ -115,15 +115,15 @@ class _VendorPageState extends State<VendorPage> {
                                       255, 238, 13, 182), //<-- SEE HERE
                                 ),
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => IndividualPage(
-                                        targetChat: data[1]!,
-                                        user: ,
-                                      ),
-                                    ),
-                                  );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => IndividualPage(
+                                  //       targetChat: data[1]!,
+                                  //       user: ,
+                                  //     ),
+                                  //   ),
+                                  // );
                                 },
                                 icon: const Icon(Icons.chat),
                                 label: const Text("Open Chat"),

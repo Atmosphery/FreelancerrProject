@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
       appBar: CustomAppBar(title: _AppTitle),
       drawer: CustomDrawerWidget(
           header: _AppTitle, user: widget.user, venders: widget.venders),
-      //body: CustomList(),
+      body: CustomList(),
     );
   }
 }
