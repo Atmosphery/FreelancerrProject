@@ -97,6 +97,10 @@ class _AppPageState extends State<AppPage> {
                       body: body);
                   print("${responsePut.statusCode}");
                   print("${responsePut.body}");
+                  setState(() {
+                    getCustomer(widget.app!.customerId.toString());
+                    getVender(widget.app!.vendorId.toString());
+                  });
                 },
                 child: Text("Accept")),
           ),
