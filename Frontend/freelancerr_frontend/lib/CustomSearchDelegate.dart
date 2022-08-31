@@ -3,6 +3,10 @@
 import 'package:flutter/material.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
+  
+  
+  
+  
   List<String> searchTerms = [
     "Apple",
     "Banana",
@@ -13,6 +17,30 @@ class CustomSearchDelegate extends SearchDelegate {
     "Pineapples",
     "Strawberries"
   ];
+
+  Future refreshJobs() async {
+    Uri uri = Uri.parse("http://10.0.2.2:8888/jobs/all");
+    final response = await http.get(uri);
+    var data = json.decode(response.body);
+    //jobs = data;
+    items = [];
+    setState(() {
+      for (var i = 0; i < data.length; i++) {
+        items.add(
+          InfoTile(
+            title: data[i]['title'],
+            image: Image.network(
+              data[i]['imageLink'],
+            ),
+            jobId: data[i]['id'],
+            userId: data[i]['userId'],
+            user: widget.user,
+          ),
+        );
+      }
+    });
+  }
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [

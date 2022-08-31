@@ -31,7 +31,7 @@ class _InfoTileState extends State<InfoTile> {
       margin: const EdgeInsets.all(15.0),
       padding: const EdgeInsets.all(3.0),
       decoration: BoxDecoration(
-          border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 3)),
+          border: Border.all(color: const Color.fromARGB(255, 0, 0, 0), width: 3)),
       child: SizedBox(
         height: 300,
         child: Column(
