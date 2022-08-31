@@ -1,7 +1,7 @@
 {
     "dummy_data": [
     {
-        "_id": 1,
+        "_id": "1",
         "name": "John Doe",
         "phonenumber": "1234567890",
         "email": "email@email.com",
@@ -17,7 +17,7 @@
         "_class": "com.backend.userservice.models.User"
     },
     {
-        "_id": 2,
+        "_id": "2",
         "name": "Wilfredo",
         "phonenumber": "55555",
         "email": "email@email2.com",
@@ -31,7 +31,7 @@
         "_class": "com.backend.userservice.models.User"
     },
     {
-        "_id": 3,
+        "_id": "3",
         "name": "Fake name",
         "phonenumber": "123-233-4829",
         "email": "real@email.com",
@@ -47,7 +47,7 @@
         "_class": "com.backend.userservice.models.User"
     },
     {
-        "_id": 4,
+        "_id": "4",
         "name": "GoodBuys83",
         "phonenumber": "444-444-4444",
         "email": "notbestbuy@goodbuy.com",
@@ -61,7 +61,7 @@
         "_class": "com.backend.userservice.models.User"
     },
     {
-        "_id": 5,
+        "_id": "5",
         "name": "Bobby Brown",
         "phonenumber": "333-421-2313",
         "email": "Bobby@Brown.com",

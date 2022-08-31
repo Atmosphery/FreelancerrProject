@@ -125,5 +125,4 @@ def wait_for_database():
                 break
             time.sleep(5)
 if __name__ == "__main__":
-    setup_databases_with_data()
     print("This is a module please run Main.py")

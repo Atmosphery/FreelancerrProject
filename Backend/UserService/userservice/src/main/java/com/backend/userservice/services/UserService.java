@@ -28,7 +28,8 @@ public class UserService {
         if(id == null){
             return null;
         }
-        return repo.findById(id).get();
+        System.out.println("Finding " + id);
+        return repo.findById(id).orElse(null);
     }
     public boolean editUser(String id, User user){
         repo.findById(id).ifPresent(u -> {

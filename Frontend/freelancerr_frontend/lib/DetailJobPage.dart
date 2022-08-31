@@ -30,14 +30,14 @@ class _DetailJobPageState extends State<DetailJobPage> {
   }
 
   Future fetchJob() async {
-    Uri uri = Uri.parse("http://10.0.2.2:8888/jobs/${widget.jobId}");
+    Uri uri = Uri.parse("http://localhost:8888/jobs/${widget.jobId}");
     final response = await http.get(uri);
     return Job.fromJson(jsonDecode(response.body));
   }
 
   Future fetchSeller() async {
     Uri uri =
-        Uri.parse("http://10.0.2.2:8888/userservice/user/${widget.userId}");
+        Uri.parse("http://localhost:8888/userservice/user/${widget.userId}");
     final response = await http.get(uri);
     return User.fromJson(jsonDecode(response.body));
   }
