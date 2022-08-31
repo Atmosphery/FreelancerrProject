@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
-[Route("appointment")]
+[Route("appointments")]
 public class AppointmentsController : Controller 
 {
     private readonly AppointmentDb _db;
