@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freelancerr_frontend/LoginScreen.dart';
 import 'Job.dart';
-import 'SellerPage.dart';
+import 'DetailJobPage.dart';
 
 class InfoTile extends StatefulWidget {
   final String title;
@@ -40,25 +40,40 @@ class _InfoTileState extends State<InfoTile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  widget.title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(right: 40),
+                  child: Text(
+                    widget.title,
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                TextButton.icon(
+                Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                        backgroundColor: Color(0xFF42273b),
+                        elevation: 20, //<-- SEE HERE
+                        shadowColor:
+                            Color.fromARGB(255, 238, 13, 182) //<-- SEE HERE
+                        ),
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => VendorPage(
-                                  jobId: widget.jobId,
-                                  userId: widget.userId.toString(),
-                                )),
+                          builder: (context) => DetailJobPage(
+                            jobId: widget.jobId,
+                            userId: widget.userId.toString(),
+                          ),
+                        ),
                       );
                     },
-                    icon: Icon(Icons.person),
-                    label: Text("Contact Vendor")),
+                    icon: const Icon(Icons.work),
+                    label: const Text("View Job"),
+                  ),
+                ),
               ],
             ),
           ],

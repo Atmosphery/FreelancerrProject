@@ -28,6 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: CustomAppBar(title: "Freelancerr!"),
       body: Column(
+        
         children: [
           Padding(
             padding: EdgeInsets.all(10),

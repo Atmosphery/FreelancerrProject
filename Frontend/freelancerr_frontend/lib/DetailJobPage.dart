@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:freelancerr_frontend/VendorPage.dart';
 import 'package:http/http.dart' as http;
 
 import 'CustomAppBar.dart';
@@ -9,17 +10,17 @@ import 'User.dart';
 import 'InfoTile.dart';
 import 'individualPage.dart';
 
-class VendorPage extends StatefulWidget {
+class DetailJobPage extends StatefulWidget {
   final int jobId;
   final String userId;
-  const VendorPage({Key? key, required this.userId, required this.jobId})
+  const DetailJobPage({Key? key, required this.userId, required this.jobId})
       : super(key: key);
 
   @override
-  State<VendorPage> createState() => _VendorPageState();
+  State<DetailJobPage> createState() => _DetailJobPageState();
 }
 
-class _VendorPageState extends State<VendorPage> {
+class _DetailJobPageState extends State<DetailJobPage> {
   Future? _future;
 
   Future<List<dynamic>> getData() async {
@@ -107,26 +108,46 @@ class _VendorPageState extends State<VendorPage> {
                               padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
                               child: OutlinedButton.icon(
                                 style: OutlinedButton.styleFrom(
-                                  backgroundColor: Color(0xFF42273b),
-                                  foregroundColor:
-                                      Color.fromARGB(255, 238, 13, 182),
-                                  elevation: 20, //<-- SEE HERE
-                                  shadowColor: Color.fromARGB(
-                                      255, 238, 13, 182), //<-- SEE HERE
-                                ),
+                                    backgroundColor: Color(0xFF42273b),
+                                    elevation: 20, //<-- SEE HERE
+                                    shadowColor: Color.fromARGB(
+                                        255, 238, 13, 182) //<-- SEE HERE
+                                    ),
                                 onPressed: () {
                                   // Navigator.push(
                                   //   context,
                                   //   MaterialPageRoute(
-                                  //     builder: (context) => IndividualPage(
-                                  //       targetChat: data[1]!,
-                                  //       user: ,
+                                  //     builder: (context) => VendorPage(
+                                  //       user: data[1],
                                   //     ),
                                   //   ),
                                   // );
                                 },
                                 icon: const Icon(Icons.chat),
                                 label: const Text("Open Chat"),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
+                              child: OutlinedButton.icon(
+                                style: OutlinedButton.styleFrom(
+                                    backgroundColor: Color(0xFF42273b),
+                                    elevation: 20, //<-- SEE HERE
+                                    shadowColor: Color.fromARGB(
+                                        255, 238, 13, 182) //<-- SEE HERE
+                                    ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => VendorPage(
+                                        user: data[1],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                icon: const Icon(Icons.person_search_outlined),
+                                label: const Text("View Vendor"),
                               ),
                             ),
                           ],
