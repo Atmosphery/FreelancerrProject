@@ -55,7 +55,7 @@ class _InfoTileState extends State<InfoTile> {
                       );
                     },
                     icon: Icon(Icons.person),
-                    label: Text("Contact Seller")),
+                    label: Text("Contact Vendor")),
               ],
             ),
           ],
