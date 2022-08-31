@@ -13,10 +13,10 @@ services:
     build: ./UserService/userservice
     container_name: userservice
     deploy:
-      replicas: 1
+      replicas: 3
       update_config:
-        parallelism: 1
-        delay: 30s
+        parallelism: 3
+        delay: 10s
     ports:
       - "9000:8080"
     depends_on:
@@ -47,10 +47,10 @@ services:
     build: ./AppointmentServiceApi
     container_name: appointmentservice
     deploy:
-      replicas: 1
+      replicas: 2
       update_config:
-        parallelism: 1
-        delay: 30s
+        parallelism: 2
+        delay: 10s
     ports:
       - "9001:8080"
     depends_on:
