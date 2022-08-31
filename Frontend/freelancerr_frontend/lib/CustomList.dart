@@ -7,7 +7,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class CustomList extends StatefulWidget {
-  CustomList({
+  const CustomList({
     Key? key,
   }) : super(key: key);
 
@@ -26,23 +26,23 @@ class _CustomListState extends State<CustomList> {
   }
 
   Future refreshJobs() async {
-    Uri uri = Uri.parse("http://localhost:8888/jobs/all");
+    Uri uri = Uri.parse("http://10.0.2.2:8888/jobs/all");
     final response = await http.get(uri);
     var data = json.decode(response.body);
     //jobs = data;
-    this.items = [];
+    items = [];
     setState(() {
       for (var i = 0; i < data.length; i++) {
-        this.items.add(
-              InfoTile(
-                title: data[i]['title'],
-                image: Image.network(
-                  data[i]['imageLink'],
-                ),
-                jobId: data[i]['id'],
-                userId: data[i]['userId'],
-              ),
-            );
+        items.add(
+          InfoTile(
+            title: data[i]['title'],
+            image: Image.network(
+              data[i]['imageLink'],
+            ),
+            jobId: data[i]['id'],
+            userId: data[i]['userId'],
+          ),
+        );
       }
     });
   }

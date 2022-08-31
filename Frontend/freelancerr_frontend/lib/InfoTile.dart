@@ -24,8 +24,11 @@ class InfoTile extends StatefulWidget {
 class _InfoTileState extends State<InfoTile> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      margin: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(3.0),
+      decoration: BoxDecoration(
+          border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 3)),
       child: SizedBox(
         height: 300,
         child: Column(

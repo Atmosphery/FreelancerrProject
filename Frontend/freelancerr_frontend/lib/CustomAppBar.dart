@@ -55,9 +55,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 255, 255, 255))),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return LoginScreen();
-                }));
+                Navigator.pop(context, LoginScreen());
+                // Navigator.pop(context, MaterialPageRoute(builder: (context) {
+                //   return LoginScreen();
+                // }));
               })
         ]);
   }
