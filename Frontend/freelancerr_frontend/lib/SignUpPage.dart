@@ -3,12 +3,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:freelancerr_frontend/LoginScreen.dart';
 import 'CustomAppBar.dart';
 import 'package:http/http.dart' as http;
 
 import 'User.dart';
-import 'main.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key? key}) : super(key: key);
@@ -140,6 +138,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 print("${responsePost.statusCode}");
                 print("${responsePost.body}");
               }
+              Navigator.pop(context);
             },
             child: Text("Sign up"),
           ),

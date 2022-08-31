@@ -3,6 +3,8 @@ from pymongo import MongoClient
 import json
 import pyodbc
 import json
+import time
+import os
 
 #Change this to TRUE if you want to use localhost databases
 #Change this to FALSE if you want to use Docker Databases
@@ -28,7 +30,7 @@ def insert_data_sql():
         print(item)
         sql_cursor.execute("SET IDENTITY_INSERT Appointments ON")
         sql_cursor.execute("""
-        INSERT INTO dbo.Appointments (id, status, vendorid, customerid, JobId, AppointmentDate)
+        INSERT INTO dbo.Appointments (id, status, vendorid, customerid, jobid, appointmentdate)
         VALUES (?, ?, ?, ?, ?, ?)
         """, item["id"], item["status"], item["vendorid"], item["customerid"], item["jobid"], item["appointmentdate"])
 
@@ -68,14 +70,15 @@ def create_table_if_not_exist(tablename):
 def setup_database_connections():
     sql_string, mongo_string = debugthings()
     
-    print("Connecting to SQL Database")
+    print("Connecting to SQL Database...")
     sql_connection = pyodbc.connect(sql_string)
     sql_cursor = sql_connection.cursor()
 
-    print("Connecting to Mongo Database")
+    print("Connecting to Mongo Database....")
     mongo_connection = MongoClient(mongo_string)
     mongo_db = mongo_connection.testdata
     mongo_collection = mongo_db.persons
+    print("Successfully Connected to SQL and Mongo Databases")
     return sql_connection, sql_cursor, mongo_connection, mongo_collection
 
 def close_database_connections():
@@ -86,7 +89,16 @@ def setup_databases_with_data():
     global sql_connection, sql_cursor, mongo_connection, mongo_collection
     sql_connection, sql_cursor, mongo_connection, mongo_collection = setup_database_connections()
     insert_data_sql()
+    insert_data_mongo()
+    print("Successfully setup databases with data")
+    print("Please wait 30 seconds for eureka and api gateway to register services")
     close_database_connections()
-
+def wait_for_database():
+    while True:
+        try:
+            sql_connection, sql_cursor, mongo_connection, mongo_collection = setup_database_connections()
+            break
+        except Exception as e:
+            time.sleep(5)
 if __name__ == "__main__":
     print("This is a module please run Main.py")
