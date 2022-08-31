@@ -91,7 +91,7 @@ class _AppManageState extends State<AppManage> {
 }
 
 Future<List<AppModel>> getAppsUser(String id) async {
-  var url = Uri.parse('http://10.0.2.2:8888/appointment/all/$id/vendor');
+  var url = Uri.parse('http://10.0.2.2:8888/appointments/all/$id/vendor');
   http.Response response = await http.get(url);
 
   var appJson = jsonDecode(response.body);

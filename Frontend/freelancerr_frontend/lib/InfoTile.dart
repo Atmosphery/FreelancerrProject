@@ -40,13 +40,17 @@ class _InfoTileState extends State<InfoTile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 40),
-                  child: Text(
-                    widget.title,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                Flexible(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 40),
+                    child: Text(
+                      overflow: TextOverflow.clip,
+                      widget.title,
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

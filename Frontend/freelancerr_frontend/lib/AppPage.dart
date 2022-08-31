@@ -88,7 +88,7 @@ class _AppPageState extends State<AppPage> {
                 onPressed: () async {
                   widget.app!.updateStatus(1);
                   var uriUpdate =
-                      Uri.parse('http://localhost:8888/appointment/');
+                      Uri.parse('http://10.0.2.2:8888/appointment/');
 
                   var body = jsonEncode(widget.app!.toJson());
 
@@ -126,7 +126,7 @@ class _AppPageState extends State<AppPage> {
   }
 
   Future<void> getVender(String id) async {
-    var url = Uri.parse('http://localhost:8888/userservice/user/${id}');
+    var url = Uri.parse('http://10.0.2.2:8888/userservice/user/${id}');
     http.Response response = await http.get(url);
 
     print('Vender Name: ' + User.fromJson(jsonDecode(response.body)).name!);

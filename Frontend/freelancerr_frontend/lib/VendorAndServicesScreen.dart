@@ -21,7 +21,7 @@ class VendorAndServiceScreen extends StatefulWidget {
 }
 
 // void getUsers() async {
-//   var url = Uri.parse('http://localhost:8888/userservice/users');
+//   var url = Uri.parse('http://10.0.2.2:8888/userservice/users');
 //   var response = await http.get(url);
 //   widget.venders = jsonDecode(response.body);
 // }

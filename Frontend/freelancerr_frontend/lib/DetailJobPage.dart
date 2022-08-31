@@ -25,8 +25,8 @@ class _DetailJobPageState extends State<DetailJobPage> {
 
   Future<List<dynamic>> getData() async {
     final job = await fetchJob();
-    final user = await fetchSeller();
-    return [job, user];
+    final vendor = await fetchSeller();
+    return [job, vendor];
   }
 
   Future fetchJob() async {

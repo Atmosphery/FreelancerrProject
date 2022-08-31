@@ -91,7 +91,7 @@ class _AppCardState extends State<AppCard> {
 
   Future<void> getUserName() async {
     var url = Uri.parse(
-        'http://localhost:8888/userservice/user/${widget.userDisplay}');
+        'http://10.0.2.2:8888/userservice/user/${widget.userDisplay}');
     http.Response response = await http.get(url);
 
     print('name string: ' + User.fromJson(jsonDecode(response.body)).name!);
