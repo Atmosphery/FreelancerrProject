@@ -55,8 +55,7 @@ class _VendorPageState extends State<VendorPage> {
           children: [
             Flexible(
               flex: 1,
-              child:
-                  Text("UserId = ${widget.userId}\n JobId = ${widget.jobId}"),
+              child: Text("UserId = ${user.id}\n JobId = ${job.id}"),
             ),
           ],
         ),

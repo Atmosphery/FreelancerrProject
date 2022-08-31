@@ -22,6 +22,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 public class ServiceController {
+    
     private final UserService userService;
     private static final User USER_NOT_FOUND = new User("User not found");
 
