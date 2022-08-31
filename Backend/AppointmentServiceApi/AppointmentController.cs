@@ -42,6 +42,22 @@ public class AppointmentsController : Controller
         return Ok(todo);
     }
 
+    //Get Appointments by Vendor 
+    [HttpGet("all/{id}/vendor")]
+    public async Task<ActionResult<List<Appointment>>> GetAllVendorAppointments(int id)
+    {
+        var list = _db.Appointments.Where(a => a.VendorId == id);
+        return Ok(list);
+    }
+
+    //Get Appointments by Customer
+    [HttpGet("all/{id}/customer")]
+    public async Task<ActionResult<List<Appointment>>> GetAllCustomerAppointments(int id)
+    {
+        var list = _db.Appointments.Where(a => a.CustomerId == id);
+        return Ok(list);
+    }
+
     //Create Appointment 
     [HttpPost]
     public async Task<ActionResult<Appointment>> AddAppointment(Appointment appt)
