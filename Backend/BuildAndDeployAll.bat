@@ -1,12 +1,12 @@
 rem FIRST SPRINGBOOT
 @echo Creating java spring projects
-rem cd ./UserService/userservice
-rem call mvn clean package
-rem cd ../../
+cd ./UserService/userservice
+call mvn clean package
+cd ../../
 
 @echo "DOTNET builds"
-rem dotnet build -c Release
-rem dotnet publish -c Release
+dotnet build -c Release
+dotnet publish -c Release
 
 @echo "building docker images"
 docker-compose build --no-cache 

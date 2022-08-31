@@ -47,6 +47,7 @@ public class ServiceController {
     @GetMapping("/finduser/{name}")
     public User getUserByName(@PathVariable("name") String name)
     {
+        System.out.println("Finding " + name);
         return userService.getUserByName(name) != null? userService.getUserByName(name) : USER_NOT_FOUND;
     }
     @GetMapping("/findallusers/{name}")
