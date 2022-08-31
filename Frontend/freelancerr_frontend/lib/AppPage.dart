@@ -116,7 +116,7 @@ class _AppPageState extends State<AppPage> {
   }
 
   Future<void> getCustomer(String id) async {
-    var url = Uri.parse('http://localhost:8888/userservice/user/${id}');
+    var url = Uri.parse('http://10.0.2.2:8888/userservice/user/${id}');
     http.Response response = await http.get(url);
 
     print('Customer Name: ' + User.fromJson(jsonDecode(response.body)).name!);

@@ -62,7 +62,7 @@ class _AppCreateState extends State<AppCreate> {
           Center(
             child: TextButton(
               onPressed: () async {
-                Uri uriAppPost = Uri.parse("http://localhost:8888/appointment");
+                Uri uriAppPost = Uri.parse("http://10.0.2.2:8888/appointment");
                 AppModel newApp = AppModel(
                     customerId: int.parse(widget.user.id!),
                     vendorId: int.parse(vendCon.text),
