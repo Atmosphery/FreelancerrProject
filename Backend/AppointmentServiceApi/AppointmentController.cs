@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
-[Route("appointments")]
+[Route("appointment")]
 public class AppointmentsController : Controller 
 {
     private readonly AppointmentDb _db;
@@ -13,24 +13,11 @@ public class AppointmentsController : Controller
         _db = db;
     }
 
-    [HttpGet("all")]
-    public async Task<ActionResult<List<Appointment>>> GetUserJobs()
-    {
-        List<Appointment> jobs = await _db.Appointments.ToListAsync();
-        return Ok(jobs);
-    }
-
-    [HttpGet("test")]
-    public ActionResult<Appointment> test()
-    {
-        return new Appointment();
-    }
-
 
     [HttpGet("all/{id}")]
     public async Task<ActionResult<List<Appointment>>> GetAllUserAppointments(int id)
     {
-        var list = await _db.Appointments.Where(a => a.CustomerId == id || a.VendorId == id).ToListAsync();
+        var list = _db.Appointments.Where(a => a.CustomerId == id || a.VendorId == id);
         return Ok(list);
     }
 
@@ -68,7 +55,6 @@ public class AppointmentsController : Controller
             await _db.Appointments.AddAsync(appt);
             await _db.SaveChangesAsync();
             return CreatedAtAction(nameof(GetAppointment), new { id = appt.Id }, appt);
-            
         }
         return BadRequest(); 
         }

@@ -1,4 +1,6 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unnecessary_new, unnecessary_this, prefer_collection_literals
+
+import 'User.dart';
 
 class AppModel {
   int? id;
@@ -27,11 +29,16 @@ class AppModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['status'] = this.status;
     data['vendorId'] = this.vendorId;
     data['customerId'] = this.customerId;
     data['jobId'] = this.jobId;
     data['appointmentDate'] = this.appointmentDate;
     return data;
+  }
+
+  void updateStatus(int status) {
+    this.status = status;
   }
 }

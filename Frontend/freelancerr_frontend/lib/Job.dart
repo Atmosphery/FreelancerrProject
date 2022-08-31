@@ -5,7 +5,7 @@ class Job {
   String? title;
   String? description;
   int? userId;
-  int? basePrice;
+  double? basePrice;
   String? imageLink;
 
   Job(
