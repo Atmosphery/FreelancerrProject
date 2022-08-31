@@ -46,6 +46,7 @@ class _CustomListState extends State<CustomList> {
             ),
             jobId: data[i]['id'],
             userId: data[i]['userId'],
+            user: widget.user,
           ),
         );
       }
@@ -71,6 +72,7 @@ class _CustomListState extends State<CustomList> {
                 image: items[index].image,
                 jobId: items[index].jobId,
                 userId: items[index].userId,
+                user: widget.user,
               ),
             ],
           );

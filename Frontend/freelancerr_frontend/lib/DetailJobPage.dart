@@ -13,7 +13,9 @@ import 'individualPage.dart';
 class DetailJobPage extends StatefulWidget {
   final int jobId;
   final String userId;
-  const DetailJobPage({Key? key, required this.userId, required this.jobId})
+  final User user;
+  const DetailJobPage(
+      {Key? key, required this.userId, required this.jobId, required this.user})
       : super(key: key);
 
   @override
@@ -122,7 +124,8 @@ class _DetailJobPageState extends State<DetailJobPage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => IndividualPage(
-                                            user: data[1],
+                                            targetChat: data[1],
+                                            user: widget.user,
                                           ),
                                         ),
                                       );

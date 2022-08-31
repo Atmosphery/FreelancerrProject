@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:freelancerr_frontend/LoginScreen.dart';
 import 'Job.dart';
 import 'DetailJobPage.dart';
+import 'User.dart';
 
 class InfoTile extends StatefulWidget {
   final String title;
   final Image image;
   final int jobId;
   final int userId;
+  final User user;
 
   const InfoTile({
     Key? key,
@@ -15,6 +17,7 @@ class InfoTile extends StatefulWidget {
     required this.image,
     required this.jobId,
     required this.userId,
+    required this.user,
   }) : super(key: key);
 
   @override
@@ -70,6 +73,7 @@ class _InfoTileState extends State<InfoTile> {
                           builder: (context) => DetailJobPage(
                             jobId: widget.jobId,
                             userId: widget.userId.toString(),
+                            user: widget.user,
                           ),
                         ),
                       );
