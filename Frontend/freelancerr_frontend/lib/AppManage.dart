@@ -33,9 +33,10 @@ class _AppManageState extends State<AppManage> {
       appBar: CustomAppBar(title: _AppTitle),
       drawer: CustomDrawerWidget(
           header: _AppTitle, user: widget.user, venders: widget.venders),
-      body: Stack(
+      body: Column(
         children: [
-          Center(
+          Expanded(
+            flex: 1,
             child: TextButton(
               onPressed: () async {
                 Navigator.push(
@@ -53,29 +54,34 @@ class _AppManageState extends State<AppManage> {
               child: Text("Add Appointment"),
             ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: FutureBuilder<List<AppModel>>(
-              future: getAppsUser(widget.user.id!),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                var data = snapshot.data!;
-                print(data);
+          Expanded(
+            flex: 10,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: FutureBuilder<List<AppModel>>(
+                future: getAppsUser(widget.user.id!),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  var data = snapshot.data!;
+                  print(data);
 
-                return ListView.builder(
-                  itemCount: widget.venders.length,
-                  itemBuilder: (context, index) {
-                    print('${snapshot.data![index]}');
-                    return AppCard(
-                      appModel: snapshot.data![index],
-                      user: widget.user,
-                    );
-                  },
-                );
-              },
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      print('${snapshot.data![index]}');
+                      return AppCard(
+                        user: widget.user,
+                        appModel: snapshot.data![index],
+                        userDisplay:
+                            snapshot.data![index].customerId.toString(),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ],
@@ -101,5 +107,3 @@ Future<List<AppModel>> getAppsUser(String id) async {
 
   return appUsersList;
 }
-
-
