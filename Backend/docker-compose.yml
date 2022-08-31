@@ -7,13 +7,6 @@ services:
     ports:
       - "8761:8761"
   
-  socketserver:
-    image: socketserver
-    build: ./socketserver
-    ports:
-      - "5000:5000"
-    depends_on:
-      - eureka
 
   userservice:
     image: userservice
@@ -85,6 +78,13 @@ services:
       - "1501:1433"
     
 
+  socketserver:
+    image: socketserver
+    build: ./socketserver
+    ports:
+      - "5000:5000"
+    depends_on:
+      - eureka
   
   apigateway:
     image: apigateway:1    

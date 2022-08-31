@@ -40,5 +40,31 @@
             "jobid": "2",
             "appointmentdate": "2022-04-07"
         }
+    ],
+    "jobs_data": [
+        {
+            "id": 1,
+            "title": "I exterminate rats!",
+            "description": "I will personally eradicate all rats from your premises.",
+            "userid": 2,
+            "baseprice": 5.0,
+            "imagelink": "https://static8.depositphotos.com/1049680/1018/i/450/depositphotos_10182313-stock-photo-hand-symbol.jpg"
+        },
+        {
+            "id": 2,
+            "title": "I will Mount your TV",
+            "description": "Do you need a TV on a wall? well I can do it!",
+            "userid": 3,
+            "baseprice": 55.0,
+            "imagelink": "https://images.pexels.com/photos/4009401/pexels-photo-4009401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        },
+        {
+            "id": 3,
+            "title": "I will design an application for you",
+            "description": "Do you need a program for cheap? I provide great services",
+            "userid": 3,
+            "baseprice": 120.0,
+            "imagelink": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        }
     ]
 }
