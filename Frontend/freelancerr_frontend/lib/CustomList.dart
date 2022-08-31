@@ -26,7 +26,7 @@ class _CustomListState extends State<CustomList> {
   }
 
   Future refreshJobs() async {
-    Uri uri = Uri.parse("http://10.0.2.2:8888/jobs/all");
+    Uri uri = Uri.parse("http://localhost:8888/jobs/all");
     final response = await http.get(uri);
     var data = json.decode(response.body);
     //jobs = data;
