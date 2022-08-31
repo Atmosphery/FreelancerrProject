@@ -33,10 +33,6 @@ class _VendorAndServiceScreenState extends State<VendorAndServiceScreen> {
       appBar: CustomAppBar(title: "Vendors"),
       body: Stack(
         children: [
-          TextButton(
-            child: Text('Go Back!'),
-            onPressed: () async {},
-          ),
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,

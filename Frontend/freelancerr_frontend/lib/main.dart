@@ -16,7 +16,6 @@ import 'package:http/http.dart' as http;
 import 'CustomAppBar.dart';
 import 'CustomDrawerWidget.dart';
 import 'CustomList.dart';
-import 'CustomListItem.dart';
 import 'Job.dart';
 import 'LoginScreen.dart';
 import 'User.dart';
@@ -63,7 +62,26 @@ class _HomePageState extends State<HomePage> {
       appBar: CustomAppBar(title: _AppTitle),
       drawer: CustomDrawerWidget(
           header: _AppTitle, user: widget.user, venders: widget.venders),
-      //body: CustomList(),
+      body: Column(children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(60, 5, 60, 5),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.greenAccent, width: 5),
+            ),
+            child: Text(
+              'Top Jobs',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        CustomList(),
+      ]),
     );
   }
 }

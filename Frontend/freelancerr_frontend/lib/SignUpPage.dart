@@ -28,6 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: CustomAppBar(title: "Freelancerr!"),
       body: Column(
+        
         children: [
           Padding(
             padding: EdgeInsets.all(10),
@@ -102,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           TextButton(
             onPressed: () async {
-              var url = Uri.parse('http://localhost:8888/userservice/users');
+              var url = Uri.parse('http://10.0.2.2:8888/userservice/users');
               http.Response resCount = await http.get(url);
               var userCountList = jsonDecode(resCount.body);
 
@@ -112,11 +113,11 @@ class _SignUpPageState extends State<SignUpPage> {
               print("count: " + idCount.toString());
 
               var uriCreate =
-                  Uri.parse('http://localhost:8888/userservice/createuser');
+                  Uri.parse('http://10.0.2.2:8888/userservice/createuser');
 
               String nameCheck = nameCon.text;
               var uriName = Uri.parse(
-                  'http://localhost:8888/userservice/finduser/$nameCheck');
+                  'http://10.0.2.2:8888/userservice/finduser/$nameCheck');
               http.Response resName = await http.get(uriName);
 
               User usrNameCheck = User.fromJson(jsonDecode(resName.body));
