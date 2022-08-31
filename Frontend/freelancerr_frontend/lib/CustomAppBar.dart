@@ -49,7 +49,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             icon: Icon(Icons.search),
           ),
           TextButton(
-              child: Text('Login',
+              child: Text('Back',
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
