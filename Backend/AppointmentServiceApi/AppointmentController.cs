@@ -13,11 +13,27 @@ public class AppointmentsController : Controller
         _db = db;
     }
 
-
+    //  Get all Appointments for a User
     [HttpGet("all/{id}")]
     public async Task<ActionResult<List<Appointment>>> GetAllUserAppointments(int id)
     {
         var list = _db.Appointments.Where(a => a.CustomerId == id || a.VendorId == id);
+        return Ok(list);
+    }
+
+    //  Get all Appointments a User has as a Vender
+    [HttpGet("all/{id}/vendor")]
+    public async Task<ActionResult<List<Appointment>>> GetAllUserAppointmentsVender(int id)
+    {
+        var list = _db.Appointments.Where(a => a.VendorId == id);
+        return Ok(list);
+    }
+
+    //  Get all Appointments a User has as a Customer
+    [HttpGet("all/{id}/customer")]
+    public async Task<ActionResult<List<Appointment>>> GetAllUserAppointmentsCustomer(int id)
+    {
+        var list = _db.Appointments.Where(a => a.CustomerId == id);
         return Ok(list);
     }
 
