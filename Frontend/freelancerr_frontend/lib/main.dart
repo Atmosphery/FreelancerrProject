@@ -16,7 +16,6 @@ import 'package:http/http.dart' as http;
 import 'CustomAppBar.dart';
 import 'CustomDrawerWidget.dart';
 import 'CustomList.dart';
-import 'CustomListItem.dart';
 import 'Job.dart';
 import 'LoginScreen.dart';
 import 'User.dart';

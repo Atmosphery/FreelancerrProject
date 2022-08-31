@@ -19,8 +19,8 @@ class VendorPage extends StatefulWidget {
 }
 
 class _VendorPageState extends State<VendorPage> {
-  User user = User();
-  Job job = Job();
+  late User user = User();
+  late Job job = Job();
 
   @override
   void initState() {
@@ -55,7 +55,10 @@ class _VendorPageState extends State<VendorPage> {
           children: [
             Flexible(
               flex: 1,
-              child: Text("UserId = ${user.id}\n JobId = ${job.id}"),
+              child: Text(
+                '${job.title}',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
