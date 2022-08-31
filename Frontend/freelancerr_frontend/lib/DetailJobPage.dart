@@ -104,51 +104,59 @@ class _DetailJobPageState extends State<DetailJobPage> {
                               child: Text(data[0].description,
                                   style: const TextStyle(fontSize: 20)),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
-                              child: OutlinedButton.icon(
-                                style: OutlinedButton.styleFrom(
-                                    backgroundColor: Color(0xFF42273b),
-                                    elevation: 20, //<-- SEE HERE
-                                    shadowColor: Color.fromARGB(
-                                        255, 238, 13, 182) //<-- SEE HERE
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(8, 30, 8, 8),
+                                  child: OutlinedButton.icon(
+                                    style: OutlinedButton.styleFrom(
+                                      backgroundColor: Color(0xFF42273b),
+                                      elevation: 20,
+                                      shadowColor:
+                                          Color.fromARGB(255, 238, 13, 182),
                                     ),
-                                onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => VendorPage(
-                                  //       user: data[1],
-                                  //     ),
-                                  //   ),
-                                  // );
-                                },
-                                icon: const Icon(Icons.chat),
-                                label: const Text("Open Chat"),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
-                              child: OutlinedButton.icon(
-                                style: OutlinedButton.styleFrom(
-                                    backgroundColor: Color(0xFF42273b),
-                                    elevation: 20, //<-- SEE HERE
-                                    shadowColor: Color.fromARGB(
-                                        255, 238, 13, 182) //<-- SEE HERE
-                                    ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => VendorPage(
-                                        user: data[1],
-                                      ),
-                                    ),
-                                  );
-                                },
-                                icon: const Icon(Icons.person_search_outlined),
-                                label: const Text("View Vendor"),
-                              ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => IndividualPage(
+                                            user: data[1],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    icon: const Icon(Icons.chat),
+                                    label: const Text("Open Chat"),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(8, 30, 8, 8),
+                                  child: OutlinedButton.icon(
+                                    style: OutlinedButton.styleFrom(
+                                        backgroundColor: Color(0xFF42273b),
+                                        elevation: 20, //<-- SEE HERE
+                                        shadowColor: Color.fromARGB(
+                                            255, 238, 13, 182) //<-- SEE HERE
+                                        ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => VendorPage(
+                                            user: data[1],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    icon: const Icon(
+                                        Icons.person_search_outlined),
+                                    label: const Text("View Vendor"),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
