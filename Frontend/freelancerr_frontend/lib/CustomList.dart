@@ -6,9 +6,14 @@ import 'package:freelancerr_frontend/Job.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'User.dart';
+
 class CustomList extends StatefulWidget {
+  final User user;
+
   const CustomList({
     Key? key,
+    required this.user,
   }) : super(key: key);
 
   @override
@@ -59,11 +64,15 @@ class _CustomListState extends State<CustomList> {
         shrinkWrap: true,
         itemCount: items.length,
         itemBuilder: (context, index) {
-          return InfoTile(
-            title: items[index].title,
-            image: items[index].image,
-            jobId: items[index].jobId,
-            userId: items[index].userId,
+          return Column(
+            children: [
+              InfoTile(
+                title: items[index].title,
+                image: items[index].image,
+                jobId: items[index].jobId,
+                userId: items[index].userId,
+              ),
+            ],
           );
         },
       ),
