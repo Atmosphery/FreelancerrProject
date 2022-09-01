@@ -2,44 +2,12 @@
 
 import 'package:flutter/material.dart';
 
-class CustomSearchDelegate extends SearchDelegate {
-  
-  
-  
-  
-  List<String> searchTerms = [
-    "Apple",
-    "Banana",
-    "Mango",
-    "Pear",
-    "Watermelons",
-    "Blueberries",
-    "Pineapples",
-    "Strawberries"
-  ];
+import 'Job.dart';
 
-  Future refreshJobs() async {
-    Uri uri = Uri.parse("http://10.0.2.2:8888/jobs/all");
-    final response = await http.get(uri);
-    var data = json.decode(response.body);
-    //jobs = data;
-    items = [];
-    setState(() {
-      for (var i = 0; i < data.length; i++) {
-        items.add(
-          InfoTile(
-            title: data[i]['title'],
-            image: Image.network(
-              data[i]['imageLink'],
-            ),
-            jobId: data[i]['id'],
-            userId: data[i]['userId'],
-            user: widget.user,
-          ),
-        );
-      }
-    });
-  }
+class CustomSearchDelegate extends SearchDelegate {
+  List<Job> jobSearchTerms;
+
+  CustomSearchDelegate(this.jobSearchTerms);
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -67,9 +35,9 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<String> matches = [];
-    for (String item in searchTerms) {
-      if (item.toLowerCase().contains(query.toLowerCase())) {
+    List<Job> matches = [];
+    for (Job item in jobSearchTerms) {
+      if (item.title!.toLowerCase().contains(query.toLowerCase())) {
         matches.add(item);
       }
     }
@@ -78,7 +46,7 @@ class CustomSearchDelegate extends SearchDelegate {
       itemBuilder: (context, index) {
         var result = matches[index];
         return ListTile(
-          title: Text(result),
+          title: Text(result.title!),
         );
       },
     );
@@ -86,10 +54,10 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> matches = [];
+    List<Job> matches = [];
 
     for (var item in matches) {
-      if (item.toLowerCase().contains(query.toLowerCase())) {
+      if (item.title!.toLowerCase().contains(query.toLowerCase())) {
         matches.add(item);
       }
     }
@@ -98,7 +66,7 @@ class CustomSearchDelegate extends SearchDelegate {
       itemBuilder: (context, index) {
         var result = matches[index];
         return ListTile(
-          title: Text(result),
+          title: Text(result.title!),
         );
       },
     );
